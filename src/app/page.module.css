@@ -1,3 +1,19 @@
+.main {
+  background-color: white;
+  border-radius: 20px;
+  margin: 50px;
+  padding: 20px;
+}
+
+.questionItem {
+  border-style: solid none none;
+  border-width: 1px;
+  border-color: lightgrey;
+  margin: 20px;
+  margin-bottom: 0;
+  padding: 10px;
+  padding-bottom: 0;
+}
 /* .main {
   display: flex;
   flex-direction: column;
