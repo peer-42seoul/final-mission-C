@@ -2,14 +2,14 @@ import Image from "next/image";
 import styles from "./page.module.css";
 import QuestionItem from "./questionItem";
 import QuestionItems from "./questionItems";
-import questionItemElement from "./questionItemElement";
+import questionItemElement from "../types/questionItemElement";
 
 export default function Home() {
   const items: questionItemElement[] = [
     new questionItemElement({
       questionId: 6,
       title: "test2",
-      answerCount: 0,
+      answerCount: 20,
       category: "MINISHELL",
       recommend: 0,
       view: 0,

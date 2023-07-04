@@ -1,4 +1,4 @@
-import type questionItemElement from "./questionItemElement";
+import type questionItemElement from "../types/questionItemElement";
 import QuestionItemContent from "./questionItemContent";
 import styles from "./page.module.css";
 import QuestionInfo from "./questionInfo";
@@ -16,6 +16,7 @@ const QuestionItem: React.FC<{ item: questionItemElement; sort: string }> = (
       createdAt={props.item.createdAt}
       sort={props.sort}
       nickname={props.item.nickname}
+      answerCount={props.item.answerCount}
     />
     <QuestionItemContent id={props.item.questionId} />
     <i className={styles.category}>#{props.item.category}</i>

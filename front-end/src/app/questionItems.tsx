@@ -1,4 +1,4 @@
-import type questionItemElement from "./questionItemElement";
+import type questionItemElement from "../types/questionItemElement";
 import QuestionItem from "./questionItem";
 import styles from "./page.module.css";
 
