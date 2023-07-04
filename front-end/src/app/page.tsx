@@ -28,9 +28,9 @@ export default function Home() {
     }),
   ];
 
-  // const sort: string = "views";
+  const sort: string = "views";
   // const sort: string = "latest";
-  const sort: string = "recommend";
+  // const sort: string = "recommend";
 
   return (
     <div className={styles.main}>

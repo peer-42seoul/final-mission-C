@@ -18,7 +18,7 @@ const QuestionItem: React.FC<{ item: questionItemElement; sort: string }> = (
       nickname={props.item.nickname}
     />
     <QuestionItemContent id={props.item.questionId} />
-    <i>#{props.item.category}</i>
+    <i className={styles.category}>#{props.item.category}</i>
   </div>
 );
 
