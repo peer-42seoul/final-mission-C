@@ -30,7 +30,7 @@ export default function Home() {
 
   return (
     <div className={styles.main}>
-      <h1>Hello World!</h1>
+      <h2>Questions</h2>
       <QuestionItems items={items} />
     </div>
   );
