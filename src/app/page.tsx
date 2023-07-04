@@ -28,10 +28,14 @@ export default function Home() {
     }),
   ];
 
+  // const sort: string = "views";
+  // const sort: string = "latest";
+  const sort: string = "recommend";
+
   return (
     <div className={styles.main}>
       <h2>Questions</h2>
-      <QuestionItems items={items} />
+      <QuestionItems items={items} sort={sort} />
     </div>
   );
 }
