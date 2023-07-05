@@ -1,8 +1,10 @@
+"use client";
 import Image from "next/image";
 import styles from "./page.module.css";
 import QuestionItem from "../components/question/questionItem";
 import QuestionItems from "../components/question/questionItems";
 import questionItemElement from "../types/questionItemElement";
+import Pagination from "@mui/material/Pagination";
 
 export default function Home() {
   const res = {
@@ -151,11 +153,17 @@ export default function Home() {
   // const sort: string = "recommend";
 
   return (
-    <div>
-      <div className={styles.main}>
-        <h2>Questions</h2>
+    <div className={styles.main}>
+      <div className={styles.mainContent}>
         <QuestionItems items={items} sort={sort} />
       </div>
+      <Pagination
+        count={10}
+        variant="outlined"
+        shape="rounded"
+        // color="primary"
+        className={styles.pagination}
+      />
     </div>
   );
 }
