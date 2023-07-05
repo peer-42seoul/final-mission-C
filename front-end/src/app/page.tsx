@@ -151,16 +151,12 @@ export default function Home() {
   };
   const items: questionItemElement[] = res.content;
 
-  // const sort: string = "views";
-  // const sort: string = "latest";
-  // const sort: string = "recommend";
-
   const [sort, setSort] = useState<string>(SortType.latest as string);
 
   return (
     <div className={styles.main}>
       <div className={styles.mainContent}>
-        <div>
+        <div className={styles.mainTitle}>
           <h2>Main Page</h2>
           <SortSelect sort={sort} setSort={setSort} />
         </div>

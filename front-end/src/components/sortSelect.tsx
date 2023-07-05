@@ -17,7 +17,7 @@ const SortSelect: React.FC<{
 
   return (
     <Box sx={{ minWidth: 120 }}>
-      <FormControl fullWidth>
+      <FormControl fullWidth size="small">
         <InputLabel id="demo-simple-select-label">sort</InputLabel>
         <Select value={props.sort} label="sort" onChange={onChangeHandler}>
           <MenuItem value={SortType.latest}>latest</MenuItem>
