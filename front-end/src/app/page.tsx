@@ -5,6 +5,7 @@ import QuestionItem from "../components/question/questionItem";
 import QuestionItems from "../components/question/questionItems";
 import questionItemElement from "../types/questionItemElement";
 import Pagination from "@mui/material/Pagination";
+import { useState } from "react";
 
 export default function Home() {
   const res = {
@@ -148,17 +149,22 @@ export default function Home() {
   };
   const items: questionItemElement[] = res.content;
 
-  const sort: string = "views";
+  // const sort: string = "views";
   // const sort: string = "latest";
   // const sort: string = "recommend";
+
+  const [sort, setSort] = useState<string>("latest" as string);
 
   return (
     <div className={styles.main}>
       <div className={styles.mainContent}>
+        <div>
+          <h2>Main Page</h2>
+        </div>
         <QuestionItems items={items} sort={sort} />
       </div>
       <Pagination
-        count={10}
+        count={res.totalPages}
         variant="outlined"
         shape="rounded"
         // color="primary"

@@ -1,5 +1,5 @@
-enum SortType {
-  recommend = "Recommends",
-  latest = "Created at",
-  views = "Views",
-}
+export const SortType = {
+  recommend: "Recommend",
+  latest: "CreatedAt",
+  views: "Views",
+} as const;
