@@ -1,3 +1,4 @@
+"use client";
 import Styles from "./question.module.css";
 
 const QuestionItemContent: React.FC<{ id: number; content: string }> = (

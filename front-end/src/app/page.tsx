@@ -6,6 +6,8 @@ import QuestionItems from "../components/question/questionItems";
 import questionItemElement from "../types/questionItemElement";
 import Pagination from "@mui/material/Pagination";
 import { useState } from "react";
+import { SortType } from "../types/sort";
+import SortSelect from "../components/sortSelect";
 
 export default function Home() {
   const res = {
@@ -153,13 +155,14 @@ export default function Home() {
   // const sort: string = "latest";
   // const sort: string = "recommend";
 
-  const [sort, setSort] = useState<string>("latest" as string);
+  const [sort, setSort] = useState<string>(SortType.latest as string);
 
   return (
     <div className={styles.main}>
       <div className={styles.mainContent}>
         <div>
           <h2>Main Page</h2>
+          <SortSelect sort={sort} setSort={setSort} />
         </div>
         <QuestionItems items={items} sort={sort} />
       </div>

@@ -59,3 +59,9 @@
 .questionContent {
   color: #606060;
 }
+
+#createdAt {
+  font-size: 0.75em;
+  padding: 0.25em 5px 0 5px;
+  color: grey;
+}

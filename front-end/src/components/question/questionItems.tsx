@@ -1,3 +1,4 @@
+"use client";
 import type questionItemElement from "../../types/questionItemElement";
 import QuestionItem from "./questionItem";
 import styles from "./question.module.css";
