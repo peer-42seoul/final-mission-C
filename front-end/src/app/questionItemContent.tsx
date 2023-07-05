@@ -1,7 +1,13 @@
 import Styles from "./page.module.css";
 
-const QuestionItemContent: React.FC<{ id: number }> = (props) => (
-  <p className={Styles.questionContent}>content! content id : {props.id}</p>
-);
+const QuestionItemContent: React.FC<{ id: number, content:string }> = (props) => {
+  let content = props.content;
+  if (content)
+
+  return (
+    <p className={Styles.questionContent}>{props.content}</p>
+
+  )
+  };
 
 export default QuestionItemContent;

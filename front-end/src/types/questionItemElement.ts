@@ -7,6 +7,7 @@ export default class questionItemElement {
   view: number;
   nickname: string;
   createdAt: string;
+  content: string;
 
   constructor(obj: {
     questionId: number;
@@ -17,6 +18,7 @@ export default class questionItemElement {
     view: number;
     nickname: string;
     createdAt: string;
+    content: string;
   }) {
     this.questionId = obj.questionId;
     this.title = obj.title;
@@ -26,5 +28,6 @@ export default class questionItemElement {
     this.view = obj.view;
     this.nickname = obj.nickname;
     this.createdAt = obj.createdAt;
+    this.content = obj.content;
   }
 }
