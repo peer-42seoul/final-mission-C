@@ -1,4 +1,4 @@
-import Style from "./page.module.css";
+import Style from "./question.module.css";
 
 const QuestionInfo: React.FC<{
   title: string;
@@ -7,7 +7,7 @@ const QuestionInfo: React.FC<{
   recommend: number;
   sort: string;
   nickname: string;
-  answerCount: number
+  answerCount: number;
 }> = (props) => {
   const imgSrc = `/${props.sort}.png`;
   let hasImg = true;
@@ -28,7 +28,7 @@ const QuestionInfo: React.FC<{
         <i>written by. {props.nickname}</i>
       </div>
       <div className={Style.meta}>
-        <img src="/comment.png"/>
+        <img src="/comment.png" />
         <p>{props.answerCount}</p>
         {hasImg && <img src={imgSrc}></img>}
         {hasImg && <p>{metaText}</p>}

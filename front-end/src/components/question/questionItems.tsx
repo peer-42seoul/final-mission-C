@@ -1,6 +1,6 @@
-import type questionItemElement from "../types/questionItemElement";
+import type questionItemElement from "../../types/questionItemElement";
 import QuestionItem from "./questionItem";
-import styles from "./page.module.css";
+import styles from "./question.module.css";
 
 const QuestionItems: React.FC<{
   items: questionItemElement[];
