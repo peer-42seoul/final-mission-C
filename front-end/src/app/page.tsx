@@ -130,14 +130,14 @@ export default function Home() {
         unsorted: true,
       },
       offset: 0,
-      pageNumber: 0,
+      pageNumber: 2,
       pageSize: 10,
       paged: true,
       unpaged: false,
     },
     totalElements: 10,
-    totalPages: 1,
-    last: true,
+    totalPages: 10,
+    last: false,
     size: 10,
     number: 0,
     sort: {
@@ -146,12 +146,21 @@ export default function Home() {
       unsorted: true,
     },
     numberOfElements: 10,
-    first: true,
+    first: false,
     empty: false,
   };
   const items: questionItemElement[] = res.content;
 
   const [sort, setSort] = useState<string>(SortType.latest as string);
+  const [page, setPage] = useState(1 as number);
+
+  const onChangeHandler = (
+    event: React.ChangeEvent<unknown>,
+    value: number
+  ) => {
+    setPage(value);
+    console.log(value);
+  };
 
   return (
     <div className={styles.main}>
@@ -166,8 +175,9 @@ export default function Home() {
         count={res.totalPages}
         variant="outlined"
         shape="rounded"
-        // color="primary"
         className={styles.pagination}
+        page={page}
+        onChange={onChangeHandler}
       />
     </div>
   );
