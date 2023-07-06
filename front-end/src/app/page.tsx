@@ -8,6 +8,7 @@ import Pagination from "@mui/material/Pagination";
 import { useState } from "react";
 import { SortType } from "../types/sort";
 import SortSelect from "../components/sortSelect";
+import CategoryItemList from "@/components/category/categoryItemList";
 
 export default function Home() {
   const res = {
@@ -164,6 +165,9 @@ export default function Home() {
 
   return (
     <div className={styles.main}>
+      <div>
+        <CategoryItemList />
+      </div>
       <div className={styles.mainContent}>
         <div className={styles.mainTitle}>
           <h2>Main Page</h2>

@@ -1,12 +1,14 @@
+import Button from "@/components/common/button-right-bottom-border";
+
 const CategoryItem: React.FC<{
-  category: string;
+  categoryName: string;
   selected: string;
   setSelected: (selected: string) => void;
 }> = (props) => {
   return (
-    <div>
-      <p>#{props.category}</p>
-    </div>
+    <Button>
+      <p>{props.categoryName}</p>
+    </Button>
   );
 };
 
