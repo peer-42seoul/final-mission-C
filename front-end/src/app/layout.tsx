@@ -23,7 +23,7 @@ export default function RootLayout({
         <header>
           <h1 className={styles.mainTitle}>Hello World!</h1>
         </header>
-        {children}
+        <div style={{ margin: "10vh 0 0 0" }}>{children}</div>
       </body>
     </html>
   );

@@ -1,7 +1,9 @@
-import type questionItemElement from "./questionItemElement";
+"use client";
+import type questionItemElement from "../../types/questionItemElement";
 import QuestionItemContent from "./questionItemContent";
-import styles from "./page.module.css";
+import styles from "./question.module.css";
 import QuestionInfo from "./questionInfo";
+import Button from "@/components/common/button-right-bottom-border";
 
 // Item에 대한 내용물을 요청해서 가져오는 컴포넌트 만드는 게 마음이 편할듯
 
@@ -16,9 +18,15 @@ const QuestionItem: React.FC<{ item: questionItemElement; sort: string }> = (
       createdAt={props.item.createdAt}
       sort={props.sort}
       nickname={props.item.nickname}
+      answerCount={props.item.answerCount}
     />
-    <QuestionItemContent id={props.item.questionId} />
-    <i className={styles.category}>#{props.item.category}</i>
+    <QuestionItemContent
+      id={props.item.questionId}
+      content={props.item.content}
+    />
+    <Button>
+      <i>#{props.item.category}</i>
+    </Button>
   </div>
 );
 
