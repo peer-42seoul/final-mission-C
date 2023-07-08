@@ -1,7 +1,7 @@
 "use client";
 import type questionItemElement from "../../types/questionItemElement";
 import QuestionItemContent from "./questionItemContent";
-import styles from "./question.module.css";
+import Styles from "./question.module.css";
 import QuestionInfo from "./questionInfo";
 import Button from "@/components/common/button-right-bottom-border";
 
@@ -17,7 +17,7 @@ const QuestionItem: React.FC<{
   };
 
   return (
-    <div className={styles.questionItem}>
+    <div className={Styles.questionItem}>
       <QuestionInfo
         title={props.item.title}
         recommend={props.item.recommend}

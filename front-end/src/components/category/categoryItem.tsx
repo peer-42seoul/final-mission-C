@@ -1,15 +1,15 @@
 import Button from "@/components/common/button-right-bottom-border";
-import Style from "./category.module.css";
+import Styles from "./category.module.css";
 
 const CategoryItem: React.FC<{
   categoryName: string;
   selected: string;
   setSelected: (selected: string) => void;
 }> = (props) => {
-  let className = Style.categoryName;
+  let className = Styles.categoryName;
 
   if (props.selected == props.categoryName) {
-    className = Style.selected;
+    className = Styles.selected;
   }
 
   const onClickHandler = (event: React.MouseEvent) => {
@@ -22,7 +22,7 @@ const CategoryItem: React.FC<{
   };
 
   return (
-    <div className={Style.category}>
+    <div className={Styles.category}>
       <Button onClick={onClickHandler}>
         <h3 className={className}>{props.categoryName}</h3>
       </Button>

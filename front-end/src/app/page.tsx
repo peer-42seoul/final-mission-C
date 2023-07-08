@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import styles from "./page.module.css";
+import Styles from "./page.module.css";
 import QuestionItem from "../components/question/questionItem";
 import QuestionItems from "../components/question/questionItems";
 import questionItemElement from "../types/questionItemElement";
@@ -9,6 +9,7 @@ import { useState } from "react";
 import { SortType } from "../types/sort";
 import SortSelect from "../components/sortSelect";
 import CategoryItemList from "@/components/category/categoryItemList";
+import SearchBox from "@/components/search/searchBox";
 
 export default function Home() {
   const res = {
@@ -155,6 +156,7 @@ export default function Home() {
   const [sort, setSort] = useState<string>(SortType.latest as string);
   const [page, setPage] = useState(1 as number);
   const [selected, setSelected] = useState("" as string);
+  const [searchTitle, setSearchTitle] = useState("" as string);
 
   const onChangeHandler = (
     event: React.ChangeEvent<unknown>,
@@ -165,26 +167,41 @@ export default function Home() {
   };
 
   return (
-    <div className={styles.main}>
-      <div className={styles.categoryItemList}>
+    <div className={Styles.main}>
+      <div className={Styles.sideMenu}>
         <CategoryItemList selected={selected} setSelected={setSelected} />
       </div>
-      <div className={styles.mainThread}>
-        <div className={styles.mainContent}>
-          <div className={styles.mainTitle}>
+      <div className={Styles.mainThread}>
+        <div className={Styles.mainContent}>
+          <div className={Styles.mainTitle}>
             <h2>Main Page</h2>
             <SortSelect sort={sort} setSort={setSort} />
           </div>
-          <QuestionItems setSelected={setSelected} items={items} sort={sort} />
+          <QuestionItems
+            setSelected={setSelected}
+            items={
+              searchTitle === ("" as string)
+                ? items
+                : items.filter((questionItemElement) => {
+                    if (questionItemElement.title.startsWith(searchTitle)) {
+                      return questionItemElement;
+                    }
+                  })
+            }
+            sort={sort}
+          />
         </div>
         <Pagination
           count={res.totalPages}
           variant="outlined"
           shape="rounded"
-          className={styles.pagination}
+          className={Styles.pagination}
           page={page}
           onChange={onChangeHandler}
         />
+      </div>
+      <div className={Styles.sideMenu}>
+        <SearchBox searchTitle={searchTitle} setSearchTitle={setSearchTitle} />
       </div>
     </div>
   );

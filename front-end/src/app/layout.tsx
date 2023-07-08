@@ -1,5 +1,5 @@
 import "./globals.css";
-import styles from "./layout.module.css";
+import Styles from "./layout.module.css";
 import { Inter } from "next/font/google";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -21,7 +21,7 @@ export default function RootLayout({
         style={{ backgroundColor: "#A6D5FF", margin: "0px" }}
       >
         <header>
-          <h1 className={styles.mainTitle}>Hello World!</h1>
+          <h1 className={Styles.mainTitle}>Hello World!</h1>
         </header>
         <div style={{ margin: "10vh 0 0 0" }}>{children}</div>
       </body>

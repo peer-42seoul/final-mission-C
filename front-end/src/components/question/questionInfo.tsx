@@ -1,5 +1,5 @@
 "use client";
-import Style from "./question.module.css";
+import Styles from "./question.module.css";
 import { SortType } from "../../types/sort";
 
 const QuestionInfo: React.FC<{
@@ -28,17 +28,17 @@ const QuestionInfo: React.FC<{
   }
 
   return (
-    <div className={Style.questionInfo}>
-      <div className={Style.meta}>
+    <div className={Styles.questionInfo}>
+      <div className={Styles.meta}>
         <h3>{props.title}</h3>
         <i>written by. {props.nickname}</i>
       </div>
-      <div className={Style.meta}>
+      <div className={Styles.meta}>
         <img src="/comment.png" />
         <p>{props.answerCount}</p>
         {hasImg && <img src={imgSrc}></img>}
         {hasImg && <p>{metaText}</p>}
-        {!hasImg && <p id={Style.createdAt}>{metaText}</p>}
+        {!hasImg && <p id={Styles.createdAt}>{metaText}</p>}
       </div>
     </div>
   );
