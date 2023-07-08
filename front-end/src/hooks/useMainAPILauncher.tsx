@@ -1,7 +1,7 @@
 import questionItemElement from "@/types/questionItemElement";
 import axios from "axios";
 
-function useMainAPILauncher({
+async function useMainAPILauncher({
   sort,
   category,
   index,
@@ -27,7 +27,7 @@ function useMainAPILauncher({
 
   const res = axios.get(`http://localhost:8000/v1`, param).then((res) => {
     console.log(res);
-    return res;
+    return res.data;
   });
 
   return res;
