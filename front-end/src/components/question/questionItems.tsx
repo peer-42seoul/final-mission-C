@@ -1,7 +1,7 @@
 "use client";
 import type questionItemElement from "../../types/questionItemElement";
 import QuestionItem from "./questionItem";
-import styles from "./question.module.css";
+import Styles from "./question.module.css";
 
 const QuestionItems: React.FC<{
   items: questionItemElement[];
