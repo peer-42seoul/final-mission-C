@@ -9,6 +9,7 @@ import { useState } from "react";
 import { SortType } from "../types/sort";
 import SortSelect from "../components/sortSelect";
 import CategoryItemList from "@/components/category/categoryItemList";
+import SearchBox from "@/components/search/searchBox";
 
 export default function Home() {
   const res = {
