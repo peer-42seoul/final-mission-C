@@ -175,7 +175,7 @@ export default function Home() {
             <h2>Main Page</h2>
             <SortSelect sort={sort} setSort={setSort} />
           </div>
-          <QuestionItems items={items} sort={sort} />
+          <QuestionItems setSelected={setSelected} items={items} sort={sort} />
         </div>
         <Pagination
           count={res.totalPages}

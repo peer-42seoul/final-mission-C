@@ -6,10 +6,16 @@ import styles from "./question.module.css";
 const QuestionItems: React.FC<{
   items: questionItemElement[];
   sort: string;
+  setSelected: (selected: string) => void;
 }> = (props) => (
   <div>
     {props.items.map((item) => (
-      <QuestionItem key={item.questionId} item={item} sort={props.sort} />
+      <QuestionItem
+        key={item.questionId}
+        item={item}
+        sort={props.sort}
+        setSelected={props.setSelected}
+      />
     ))}
   </div>
 );
