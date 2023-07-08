@@ -154,6 +154,7 @@ export default function Home() {
 
   const [sort, setSort] = useState<string>(SortType.latest as string);
   const [page, setPage] = useState(1 as number);
+  const [selected, setSelected] = useState("" as string);
 
   const onChangeHandler = (
     event: React.ChangeEvent<unknown>,
@@ -165,24 +166,26 @@ export default function Home() {
 
   return (
     <div className={styles.main}>
-      <div>
-        <CategoryItemList />
+      <div className={styles.categoryItemList}>
+        <CategoryItemList selected={selected} setSelected={setSelected} />
       </div>
-      <div className={styles.mainContent}>
-        <div className={styles.mainTitle}>
-          <h2>Main Page</h2>
-          <SortSelect sort={sort} setSort={setSort} />
+      <div className={styles.mainThread}>
+        <div className={styles.mainContent}>
+          <div className={styles.mainTitle}>
+            <h2>Main Page</h2>
+            <SortSelect sort={sort} setSort={setSort} />
+          </div>
+          <QuestionItems items={items} sort={sort} />
         </div>
-        <QuestionItems items={items} sort={sort} />
+        <Pagination
+          count={res.totalPages}
+          variant="outlined"
+          shape="rounded"
+          className={styles.pagination}
+          page={page}
+          onChange={onChangeHandler}
+        />
       </div>
-      <Pagination
-        count={res.totalPages}
-        variant="outlined"
-        shape="rounded"
-        className={styles.pagination}
-        page={page}
-        onChange={onChangeHandler}
-      />
     </div>
   );
 }

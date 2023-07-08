@@ -1,4 +1,5 @@
 import Button from "@/components/common/button-right-bottom-border";
+import Style from "./category.module.css";
 
 const CategoryItem: React.FC<{
   categoryName: string;
@@ -6,9 +7,12 @@ const CategoryItem: React.FC<{
   setSelected: (selected: string) => void;
 }> = (props) => {
   return (
-    <Button>
-      <p>{props.categoryName}</p>
-    </Button>
+    <div className={Style.category}>
+      <Button>
+        <h3>{props.categoryName}</h3>
+      </Button>
+      <hr color="white" />
+    </div>
   );
 };
 

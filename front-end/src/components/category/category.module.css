@@ -1,0 +1,29 @@
+.category {
+  padding : 0px;
+  margin: 0;
+  /* margin: 10px; */
+  width: auto;
+  /* box-sizing: border-box; */
+  /* border-style: none none solid; */
+  border-width: 1px;
+  border-color: grey;
+  
+}
+
+.category h3 {
+  margin: 0 10px 0 0;
+  padding: 5px 15px 5px 0;
+  display: inline-block;
+}
+
+#belowTitle {
+  /* display: block; */
+  border-top: 1px grey solid;
+}
+
+.categoryItemList {
+  display: flex;
+  align-content: space-between;
+  flex-direction: column;
+  height: 100%;
+}
