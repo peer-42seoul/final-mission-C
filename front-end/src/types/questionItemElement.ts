@@ -31,3 +31,9 @@ export default class questionItemElement {
     this.content = obj.content;
   }
 }
+// export const questionItemElement = {
+//   none: "",
+//   minishell: "minishell",
+//   miniRT: "miniRt",
+//   ft_irc: "ft_irc",
+// } as const;

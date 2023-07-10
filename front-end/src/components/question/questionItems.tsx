@@ -9,7 +9,7 @@ const QuestionItems: React.FC<{
   setSelected: (selected: string) => void;
 }> = (props) => (
   <div>
-    {props.items.map((item) => (
+    {props.items?.map((item) => (
       <QuestionItem
         key={item.questionId}
         item={item}
