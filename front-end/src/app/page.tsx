@@ -18,16 +18,18 @@ export default function Home() {
   const [selected, setSelected] = useState("" as string);
   const [searchTitle, setSearchTitle] = useState("" as string);
   const [isLoading, setIsLoading] = useState(false as boolean);
-  const [contents, setContents] = useState<null | JSON>(null);
+  const [contents, setContents] = useState<null | any>(null);
+  const [hasError, setHasError] = useState(false);
 
   useMainAPILauncher({
     sort: sort,
     category: selected,
     index: page,
-    pageSize: 10,
+    pageSize: 2,
     isLoading,
     setContents,
     setIsLoading,
+    setHasError,
   });
 
   const totalPages = contents?.totalPages ? contents?.totalPages : 1;
@@ -51,12 +53,20 @@ export default function Home() {
             <h2>Main Page</h2>
             <SortSelect sort={sort} setSort={setSort} />
           </div>
-          {isLoading && (
+          {!hasError && isLoading && (
             <div style={{ padding: "10px 20px 0" }}>
               <h2>Loading</h2>
             </div>
           )}
-          {!isLoading && (
+          {hasError && !isLoading && (
+            <div style={{ padding: "10px 20px 0" }}>
+              <h2>
+                {contents.response.status}{" "}
+                {contents.response.data.error?.message}
+              </h2>
+            </div>
+          )}
+          {!hasError && !isLoading && (
             <QuestionItems
               setSelected={setSelected}
               items={

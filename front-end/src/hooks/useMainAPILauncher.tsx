@@ -11,6 +11,7 @@ function useMainAPILauncher({
   isLoading,
   setContents,
   setIsLoading,
+  setHasError,
 }: {
   sort: string;
   category: string;
@@ -19,6 +20,7 @@ function useMainAPILauncher({
   isLoading: boolean;
   setContents: (res: any) => void;
   setIsLoading: (isLoading: boolean) => void;
+  setHasError: (hasError: boolean) => void;
 }) {
   // const items: questionItemElement[] = [] as questionItemElement[];
 
@@ -41,15 +43,19 @@ function useMainAPILauncher({
         }`;
 
         const param = JSON.parse(paramStr);
+        console.log(param);
 
         await axios.get(`http://localhost:8000/v1`, param).then((res) => {
-          setContents(res.data);
           console.log(res.data);
+          setContents(res.data);
           setIsLoading(false);
+          setHasError(false);
         });
       } catch (error) {
+        setHasError(true);
+        setContents(error);
+        setIsLoading(false);
         console.log(error);
-        setContents("Error occurred while loading please try again");
       }
     };
     if (isLoading == false) {

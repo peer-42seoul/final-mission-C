@@ -1,6 +1,6 @@
 export const Categories = {
   none: "",
-  minishell: "minishell",
-  miniRT: "miniRt",
-  ft_irc: "ft_irc",
+  minishell: "MINISHELL",
+  fdf: "FDF",
+  ft_irc: "FT_IRC",
 } as const;

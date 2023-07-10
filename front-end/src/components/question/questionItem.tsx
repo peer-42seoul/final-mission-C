@@ -32,7 +32,7 @@ const QuestionItem: React.FC<{
         content={props.item.content}
       />
       <Button onClick={onClickHandler}>
-        <i>#{props.item.category}</i>
+        <i>#{props.item.category.toLowerCase()}</i>
       </Button>
     </div>
   );
