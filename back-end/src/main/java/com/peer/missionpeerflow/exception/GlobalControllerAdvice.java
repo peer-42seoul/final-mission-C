@@ -1,16 +1,14 @@
 package com.peer.missionpeerflow.exception;
 
-import com.sun.net.httpserver.HttpsServer;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import org.springframework.web.client.HttpClientErrorException;
 
 import java.util.HashMap;
+import java.util.*;
 import java.util.Map;
 
 @RestControllerAdvice
@@ -19,10 +17,13 @@ public class GlobalControllerAdvice {
 	@ExceptionHandler(value = MethodArgumentNotValidException.class)
 	public ResponseEntity<Map<String, Object>>  methodArgumentNotValidException(MethodArgumentNotValidException e) {
 		Map<String, Object> response = new HashMap<>();
-		Map<String, String> errors = new HashMap<>();
+		Map<String, List<String>> errors = new HashMap<String, List<String>>();
+		List<String> errorList = new ArrayList<>();
+
 		for (FieldError fieldError : e.getBindingResult().getFieldErrors()) {
-			errors.put(fieldError.getField(), fieldError.getDefaultMessage());
+			errorList.add(fieldError.getDefaultMessage());
 		}
+		errors.put("message", errorList);
 		response.put("error", errors);
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
 	}
@@ -32,7 +33,7 @@ public class GlobalControllerAdvice {
 //		return ResponseEntity.status(HttpStatus.FORBIDDEN).body(e.getMessage());
 		Map<String, Object> response = new HashMap<>();
 		Map<String, String> error = new HashMap<>();
-		error.put("Forbidden", e.getMessage());
+		error.put("message", e.getMessage());
 		response.put("error", error);
 		return ResponseEntity.status(HttpStatus.FORBIDDEN).body(response);
 	}
@@ -52,7 +53,7 @@ public class GlobalControllerAdvice {
 //		return ResponseEntity.status(HttpStatus.FORBIDDEN).body(e.getMessage());
 		Map<String, Object> response = new HashMap<>();
 		Map<String, String> error = new HashMap<>();
-		error.put("Unauthorized", e.getMessage());
+		error.put("message", e.getMessage());
 		response.put("error", error);
 		return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
 	}
@@ -62,7 +63,7 @@ public class GlobalControllerAdvice {
 //		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
 		Map<String, Object> response = new HashMap<>();
 		Map<String, String> error = new HashMap<>();
-		error.put("NotFound", e.getMessage());
+		error.put("message", e.getMessage());
 		response.put("error", error);
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
 	}
@@ -72,7 +73,7 @@ public class GlobalControllerAdvice {
 //		return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
 		Map<String, Object> response = new HashMap<>();
 		Map<String, String> error = new HashMap<>();
-		error.put("Conflict", e.getMessage());
+		error.put("message", e.getMessage());
 		response.put("error", error);
 		return ResponseEntity.status(HttpStatus.CONFLICT).body(response);
 	}
@@ -83,7 +84,7 @@ public class GlobalControllerAdvice {
 //		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
 		Map<String, Object> response = new HashMap<>();
 		Map<String, String> error = new HashMap<>();
-		error.put("BAD_REQUEST", e.getMessage());
+		error.put("message", e.getMessage());
 		response.put("error", error);
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
 	}
