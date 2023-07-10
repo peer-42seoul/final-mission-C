@@ -19,10 +19,10 @@ services:
     container_name: peerflow-application
     image: peerflow-application
     build:
-      context: ./backend
+      context: ./back-end
       dockerfile: Dockerfile
     ports:
-      - "8080:8080"
+      - "8000:8000"
     depends_on:
       - peerflow-database
     environment:

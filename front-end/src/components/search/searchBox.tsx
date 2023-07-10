@@ -52,7 +52,7 @@ const SearchBox: React.FC<{
           className={Styles.searchBox}
         >
           <div>
-            <InputLabel htmlFor="component-simple">Name</InputLabel>
+            <InputLabel htmlFor="component-simple">Title</InputLabel>
             <Input
               id="component-simple"
               value={inputText}

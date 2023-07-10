@@ -1,5 +1,5 @@
 export const SortType = {
   recommend: "Recommend",
   latest: "CreatedAt",
-  views: "Views",
+  view: "View",
 } as const;
