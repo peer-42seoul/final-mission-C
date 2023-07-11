@@ -61,8 +61,8 @@ export default function Home() {
           {hasError && !isLoading && (
             <div style={{ padding: "10px 20px 0" }}>
               <h2>
-                {contents.response.status}{" "}
-                {contents.response.data.error?.message}
+                {contents?.response?.status}{" "}
+                {contents?.response?.data?.error?.message}
               </h2>
             </div>
           )}
