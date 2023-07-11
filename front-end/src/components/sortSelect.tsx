@@ -21,7 +21,7 @@ const SortSelect: React.FC<{
         <InputLabel id="demo-simple-select-label">sort</InputLabel>
         <Select value={props.sort} label="sort" onChange={onChangeHandler}>
           <MenuItem value={SortType.latest}>latest</MenuItem>
-          <MenuItem value={SortType.views}>views</MenuItem>
+          <MenuItem value={SortType.view}>views</MenuItem>
           <MenuItem value={SortType.recommend}>recommend</MenuItem>
         </Select>
       </FormControl>

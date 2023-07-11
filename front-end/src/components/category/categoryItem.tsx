@@ -24,7 +24,7 @@ const CategoryItem: React.FC<{
   return (
     <div className={Styles.category}>
       <Button onClick={onClickHandler}>
-        <h3 className={className}>{props.categoryName}</h3>
+        <h3 className={className}>{props.categoryName.toLowerCase()}</h3>
       </Button>
       <hr color="white" />
     </div>
