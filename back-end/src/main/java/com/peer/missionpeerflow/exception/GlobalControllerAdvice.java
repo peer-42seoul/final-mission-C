@@ -30,7 +30,6 @@ public class GlobalControllerAdvice {
 
 	@ExceptionHandler(value = ForbiddenException.class)
 	public ResponseEntity forbiddenException(ForbiddenException e) {
-//		return ResponseEntity.status(HttpStatus.FORBIDDEN).body(e.getMessage());
 		Map<String, Object> response = new HashMap<>();
 		Map<String, String> error = new HashMap<>();
 		error.put("message", e.getMessage());
