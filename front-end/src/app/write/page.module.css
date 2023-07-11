@@ -1,22 +1,25 @@
 .main {
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
+  justify-items: stretch;
+  align-items: stretch;
 }
 
 .mainTread {
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  height: fit-content;
+  align-content: center;
+  /* height: fit-content; */
   background-color: white;
   border-radius: 25px;
+  flex-wrap: wrap;
 }
 
 .mainContent {
   width: 100%;
   padding: 10px 20px;
-  height:80vh;
+  height:fit-content;
 }
 
 .mainContent h2 {

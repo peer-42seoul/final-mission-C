@@ -19,7 +19,7 @@ export default function Page() {
         <div className={Styles.mainContent}>
           <div style={{ padding: "10px 20px 0" }}>
             <h2>Write your question</h2>
-            <hr className={Styles.belowTitle} />
+            {/* <hr className={Styles.belowTitle} /> */}
           </div>
           <QuestionForm />
         </div>

@@ -1,8 +1,28 @@
-import { FormControl, Input, InputAdornment, TextField } from "@mui/material";
+import {
+  FormControl,
+  Input,
+  InputAdornment,
+  InputLabel,
+  TextField,
+} from "@mui/material";
 import CategoryItem from "../category/categoryItem";
 import { useState } from "react";
 import { Categories } from "@/types/categories";
 import Styles from "./questionForm.module.css";
+import { styled } from "styled-components";
+
+const Button = styled.button`
+  display: block;
+  background-color: #a6d5ff;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 10px;
+  color: white;
+  border-color: lightgrey;
+  border-width: 1.5px;
+  height: 50px;
+  width: 80px;
+`;
 
 const QuestionForm: React.FC = (props) => {
   const categories = Object.values(Categories);
@@ -22,7 +42,7 @@ const QuestionForm: React.FC = (props) => {
         {categories.map((category) => {
           if (category !== "")
             return (
-              <div className={Styles.categoryItem}>
+              <div key={category} className={Styles.categoryItem}>
                 <CategoryItem
                   key={category}
                   selected={selected}
@@ -37,11 +57,28 @@ const QuestionForm: React.FC = (props) => {
         <TextField
           multiline
           rows={10}
-          style={{ height: "5em", fontSize: "1.1em" }}
+          style={{ height: "100%", fontSize: "1.1em" }}
           placeholder="ex. PLZ gimme any tips for minishell. I don't have any idea."
           id="standard-adornment-amount"
         />
       </FormControl>
+      <div className={Styles.footer}>
+        <div className={Styles.login}>
+          <TextField
+            label="Nickname"
+            size="small"
+            placeholder="ex. peer"
+            style={{ margin: "5px 0" }}
+          />
+          <TextField
+            label="Password"
+            size="small"
+            type="password"
+            style={{ margin: "5px 0" }}
+          />
+        </div>
+        <Button>Post</Button>
+      </div>
     </div>
   );
 };
