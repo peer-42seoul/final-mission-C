@@ -6,6 +6,7 @@ import FormHelperText from "@mui/material/FormHelperText";
 import { useState } from "react";
 import Styles from "./searchBox.module.css";
 import styled from "@emotion/styled";
+import Link from "next/link";
 
 const Button = styled.button`
   display: block;
@@ -76,7 +77,14 @@ const SearchBox: React.FC<{
       </div>
       <div>
         <h4>Can't find what you're curious about?</h4>
-        <Button>Write a Question</Button>
+        <Button>
+          <Link
+            href={"/write"}
+            style={{ textDecoration: "none", color: "inherit" }}
+          >
+            Write a Question
+          </Link>
+        </Button>
       </div>
     </div>
   );
