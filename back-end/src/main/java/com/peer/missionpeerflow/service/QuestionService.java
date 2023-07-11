@@ -19,22 +19,22 @@ public class QuestionService {
 
     private final QuestionRepository questionRepository;
 
-    public void create(@NotNull QuestionRequest questionRequest) {
+    public Long create(@NotNull QuestionRequest questionRequest) {
         Question entity = Question.builder()
                 .title(questionRequest.getTitle())
                 .content(questionRequest.getContent())
                 .nickname(questionRequest.getNickname())
                 .password(questionRequest.getPassword())
-                .createdAt(questionRequest.getCreatedAt())
                 .category(questionRequest.getCategory())
                 .view(0L)
                 .build();
         this.questionRepository.save(entity);
+        return entity.getQuestionId();
     }
 
     public void modify(@NotNull QuestionModifyRequest questionModifyRequest, Long questionId) {
         Question entity = getQuestion(questionId);
-        entity.update(questionModifyRequest.getTitle(), questionModifyRequest.getNickname(), questionModifyRequest.getCategory(), questionModifyRequest.getContent(), questionModifyRequest.getUpdatedAt());
+        entity.update(questionModifyRequest.getTitle(), questionModifyRequest.getNickname(), questionModifyRequest.getCategory(), questionModifyRequest.getContent());
         questionRepository.save(entity);
     }
 
