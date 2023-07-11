@@ -3,7 +3,6 @@ package com.peer.missionpeerflow.entity;
 import com.peer.missionpeerflow.util.Category;
 import com.peer.missionpeerflow.util.CategoryAttributeConverter;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -49,7 +48,7 @@ public class Question extends BaseEntity {
 	private List<QuestionComment> questionCommentList = new ArrayList<>();
 
 	@Builder
-	public Question(Long questionId, String title, Category category, String nickname, String password, String content,List<Answer> answerList, List<QuestionComment> questionCommentList, LocalDateTime createdAt, Long view) {
+	public Question(Long questionId, String title, Category category, String nickname, String password, String content,List<Answer> answerList, List<QuestionComment> questionCommentList, Long view) {
 		this.questionId = questionId;
 		this.title = title;
 		this.category = category;
@@ -58,16 +57,14 @@ public class Question extends BaseEntity {
 		this.content = content;
 		this.answerList = answerList;
 		this.questionCommentList = questionCommentList;
-		this.createdAt = createdAt;
 		this.view = view;
 	}
 
-	public void update(String title, String nickname, Category category, String content, LocalDateTime updatedAt) {
+	public void update(String title, String nickname, Category category, String content) {
 		this.title = title;
 		this.nickname = nickname;
 		this.category = category;
 		this.content = content;
-		this.updatedAt = updatedAt;
 	}
 
 	public void updateRecommend(Long recommend) {
