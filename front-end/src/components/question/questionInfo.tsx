@@ -21,7 +21,7 @@ const QuestionInfo: React.FC<{
     createdAt = new Date(props.createdAt);
     createdAtStr = createdAt.toLocaleDateString("en-Us");
     metaText = "created at " + createdAtStr;
-  } else if (props.sort === SortType.views) {
+  } else if (props.sort === SortType.view) {
     metaText = `${props.view} views`;
   } else {
     metaText = `${props.recommend}`;

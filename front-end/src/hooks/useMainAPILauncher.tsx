@@ -6,7 +6,7 @@ import { SortType } from "@/types/sort";
 function useMainAPILauncher({
   sort,
   category,
-  index,
+  pageIndex,
   pageSize,
   isLoading,
   setContents,
@@ -15,7 +15,7 @@ function useMainAPILauncher({
 }: {
   sort: string;
   category: string;
-  index: number;
+  pageIndex: number;
   pageSize: number;
   isLoading: boolean;
   setContents: (res: any) => void;
@@ -37,7 +37,7 @@ function useMainAPILauncher({
                 ? `"sort": "${sort}",`
                 : `"sort": "${SortType.latest}",`
             }
-            "index": ${index},
+            "pageIndex": ${pageIndex},
             "pageSize": ${pageSize}
           }
         }`;
@@ -61,7 +61,7 @@ function useMainAPILauncher({
     if (isLoading == false) {
       fetchData();
     }
-  }, [sort, category, index, pageSize]);
+  }, [sort, category, pageIndex, pageSize]);
 }
 
 export default useMainAPILauncher;

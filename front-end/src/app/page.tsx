@@ -24,8 +24,8 @@ export default function Home() {
   useMainAPILauncher({
     sort: sort,
     category: selected,
-    index: page,
-    pageSize: 2,
+    pageIndex: page - 1,
+    pageSize: 10,
     isLoading,
     setContents,
     setIsLoading,
@@ -82,14 +82,22 @@ export default function Home() {
             />
           )}
         </div>
-        <Pagination
-          count={totalPages}
-          variant="outlined"
-          shape="rounded"
-          className={Styles.pagination}
-          page={page}
-          onChange={onChangeHandler}
-        />
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-around",
+          }}
+        >
+          <Pagination
+            count={totalPages}
+            variant="outlined"
+            shape="rounded"
+            className={Styles.pagination}
+            page={page}
+            onChange={onChangeHandler}
+          />
+        </div>
       </div>
       <div className={Styles.sideMenu}>
         <SearchBox searchTitle={searchTitle} setSearchTitle={setSearchTitle} />
