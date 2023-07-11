@@ -3,6 +3,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  height: fit-content;
 }
 
 .mainContent {
@@ -10,7 +11,7 @@
   border-radius: 25px;
   width: 50vw;
   padding: 10px 20px;
-  height:fit-content;
+  height:80vh;
 }
 
 .mainContent h2 {

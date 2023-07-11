@@ -47,8 +47,8 @@ export default function Page() {
           <FormControl margin="normal" sx={{ m: 1, width: 0.85 }}>
             <TextField
               multiline
-              rows={2}
-              maxRows={2}
+              rows={10}
+              maxRows={10}
               style={{ height: "5em", fontSize: "1.1em" }}
               placeholder="ex. PLZ gimme any tips for minishell. I don't have any idea."
               id="standard-adornment-amount"
