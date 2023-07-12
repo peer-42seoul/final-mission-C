@@ -27,9 +27,15 @@ const Button = styled.button`
 const QuestionForm: React.FC = (props) => {
   const categories = Object.values(Categories);
   const [selected, setSelected] = useState("");
+  const initialValues = {
+    questionTitle: "",
+    categories: "",
+    questionBody: "",
+    nickname: "",
+    password: "",
+  };
 
   return (
-    // <div >
     <form className={Styles.questionContent}>
       <FormControl
         margin="normal"
@@ -37,6 +43,7 @@ const QuestionForm: React.FC = (props) => {
         sx={{ m: 2, width: 0.9 }}
       >
         <Input
+          required
           name="questionTitle"
           style={{ height: "30px", fontSize: "1.1em" }}
           placeholder="ex. Is there some tips for minishell?"
@@ -62,6 +69,7 @@ const QuestionForm: React.FC = (props) => {
       </div>
       <FormControl margin="normal" sx={{ m: 1, width: 0.9 }}>
         <TextField
+          required
           name="questionBody"
           multiline
           rows={10}
@@ -76,6 +84,7 @@ const QuestionForm: React.FC = (props) => {
       <div className={Styles.footer}>
         <div className={Styles.login}>
           <TextField
+            required
             name="nickname"
             label="Nickname"
             size="small"
@@ -83,6 +92,7 @@ const QuestionForm: React.FC = (props) => {
             style={{ margin: "5px 0" }}
           />
           <TextField
+            required
             name="password"
             label="Password"
             size="small"
@@ -93,7 +103,6 @@ const QuestionForm: React.FC = (props) => {
         <Button>Post</Button>
       </div>
     </form>
-    // </div>
   );
 };
 
