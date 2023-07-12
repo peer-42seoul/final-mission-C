@@ -16,6 +16,7 @@
 #belowTitle {
   /* display: block; */
   border-top: 1px grey solid;
+  width: 80%;
 }
 
 .categoryItemList {

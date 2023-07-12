@@ -30,7 +30,11 @@ const QuestionForm: React.FC = (props) => {
 
   return (
     <div className={Styles.questionContent}>
-      <FormControl margin="normal" sx={{ m: 2, width: 0.85 }}>
+      <FormControl
+        margin="normal"
+        style={{ borderTop: "1px lightgray solid", padding: "30px 0 0" }}
+        sx={{ m: 2, width: 0.9 }}
+      >
         <Input
           style={{ height: "30px", fontSize: "1.1em" }}
           placeholder="ex. Is there some tips for minishell?"
@@ -53,11 +57,14 @@ const QuestionForm: React.FC = (props) => {
             );
         })}
       </div>
-      <FormControl margin="normal" sx={{ m: 1, width: 0.85 }}>
+      <FormControl margin="normal" sx={{ m: 1, width: 0.9 }}>
         <TextField
           multiline
           rows={10}
-          style={{ height: "100%", fontSize: "1.1em" }}
+          style={{
+            height: "100%",
+            fontSize: "1.1em",
+          }}
           placeholder="ex. PLZ gimme any tips for minishell. I don't have any idea."
           id="standard-adornment-amount"
         />
