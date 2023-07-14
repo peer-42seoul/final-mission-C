@@ -1,18 +1,22 @@
 import {
+  Box,
   FormControl,
   Input,
   InputAdornment,
-  InputLabel,
+  Modal,
   TextField,
+  Typography,
 } from "@mui/material";
 import CategoryItem from "../category/categoryItem";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Categories } from "@/types/categories";
 import Styles from "./questionForm.module.css";
 import { styled } from "styled-components";
 import { useForm, SubmitHandler } from "react-hook-form";
 import axios from "axios";
 import { ErrorType } from "@/types/error";
+import BasicModal from "../common/BasicModal";
+import Link from "next/link";
 
 const Button = styled.button`
   display: block;
@@ -29,7 +33,6 @@ const Button = styled.button`
 
 type FormValue = {
   questionTitle: string;
-  categories: string;
   questionBody: string;
   nickname: string;
   password: string;
@@ -39,19 +42,31 @@ const QuestionForm: React.FC = (props) => {
   const categories = Object.values(Categories);
   const [selected, setSelected] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [errorMessage, setErrorMessage] = useState({} as ErrorType);
-  const initialValues = {};
+  const [errorMessage, setErrorMessage] = useState<string>("");
+  const [touched, setTouched] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
+  const initialValues: FormValue = {} as FormValue;
+  initialValues.questionTitle = "";
+  initialValues.questionBody = "";
+  initialValues.nickname = "";
+  initialValues.password = "";
 
   const {
     register,
     handleSubmit,
+    resetField,
     watch,
-    formState: { errors, isSubmitting },
-  } = useForm<FormValue>();
+    formState: { errors, isSubmitting, isSubmitSuccessful },
+  } = useForm<FormValue>({ defaultValues: initialValues });
 
   const onSubmitHandler: SubmitHandler<FormValue> = (data: FormValue) => {
+    setTouched(true);
+    if (!selected) {
+      return;
+    }
     // data.preventDefault();
     setIsLoading(true);
+    setModalOpen(true);
     const fetchData = async (data: FormValue) => {
       const questionData = {
         type: "question",
@@ -60,7 +75,6 @@ const QuestionForm: React.FC = (props) => {
         password: data.password,
         category: selected,
         content: data.questionBody,
-        createdAt: new Date().toISOString(),
       };
       console.log(questionData);
       const res = await axios
@@ -68,12 +82,18 @@ const QuestionForm: React.FC = (props) => {
         .then((res) => {
           console.log(res);
           setIsLoading(false);
+          resetField("questionTitle");
+          resetField("questionBody");
+          resetField("nickname");
+          resetField("password");
+          setSelected("");
+          setTouched(false);
           return res;
         })
         .catch((error) => {
-          console.log(error);
-          setErrorMessage(error.response.data);
           setIsLoading(false);
+          console.log(error);
+          setErrorMessage("Something went wrong");
         });
     };
     if (!isLoading) {
@@ -105,6 +125,11 @@ const QuestionForm: React.FC = (props) => {
               })}
             />
           </FormControl>
+          {touched && !selected && (
+            <p style={{ color: "red", margin: "0", padding: "0" }}>
+              need to select category
+            </p>
+          )}
           <div className={Styles.categoryList}>
             {categories.map((category) => {
               if (category !== "")
@@ -119,8 +144,8 @@ const QuestionForm: React.FC = (props) => {
                   </div>
                 );
             })}
-            <Input type="hidden" value={selected} {...register("categories")} />
           </div>
+
           <FormControl margin="normal" sx={{ m: 1, width: 0.9 }}>
             <TextField
               required
@@ -171,7 +196,43 @@ const QuestionForm: React.FC = (props) => {
           </div>
         </form>
       )}
-      {isLoading && <h2>Loading</h2>}
+      <BasicModal open={modalOpen} setOpen={setModalOpen}>
+        <div>
+          {isLoading && <h3>Loading</h3>}
+          {!isLoading && isSubmitSuccessful && (
+            <div
+              style={{
+                padding: "0",
+                margin: "0",
+                display: "flex",
+                justifyContent: "center",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              <h3>Successfully Posted!</h3>
+              <Button>
+                <Link
+                  style={{ textDecoration: "none", color: "white" }}
+                  href="/"
+                >
+                  go to main
+                </Link>
+              </Button>
+            </div>
+          )}
+          {errorMessage && (
+            <div
+              style={{
+                padding: "0",
+                margin: "0",
+              }}
+            >
+              <h3>{errorMessage}</h3>
+            </div>
+          )}
+        </div>
+      </BasicModal>
     </div>
   );
 };
