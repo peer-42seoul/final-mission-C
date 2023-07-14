@@ -2,3 +2,4 @@
 .next/cache/webpack/server-development/6.pack_
 .vscode/settings.json
 .env
+/node_modules
