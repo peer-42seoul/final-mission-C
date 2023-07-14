@@ -1,9 +1,11 @@
 import {
+  Box,
   FormControl,
   Input,
   InputAdornment,
   Modal,
   TextField,
+  Typography,
 } from "@mui/material";
 import CategoryItem from "../category/categoryItem";
 import { useEffect, useState } from "react";
@@ -13,6 +15,8 @@ import { styled } from "styled-components";
 import { useForm, SubmitHandler } from "react-hook-form";
 import axios from "axios";
 import { ErrorType } from "@/types/error";
+import BasicModal from "../common/BasicModal";
+import Link from "next/link";
 
 const Button = styled.button`
   display: block;
@@ -38,9 +42,9 @@ const QuestionForm: React.FC = (props) => {
   const categories = Object.values(Categories);
   const [selected, setSelected] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [errorMessage, setErrorMessage] = useState({} as ErrorType);
+  const [errorMessage, setErrorMessage] = useState<string>("");
   const [touched, setTouched] = useState(false);
-  const [buttonError, setButtonError] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
   const initialValues: FormValue = {} as FormValue;
   initialValues.questionTitle = "";
   initialValues.questionBody = "";
@@ -58,11 +62,11 @@ const QuestionForm: React.FC = (props) => {
   const onSubmitHandler: SubmitHandler<FormValue> = (data: FormValue) => {
     setTouched(true);
     if (!selected) {
-      setButtonError(true);
       return;
     }
     // data.preventDefault();
     setIsLoading(true);
+    setModalOpen(true);
     const fetchData = async (data: FormValue) => {
       const questionData = {
         type: "question",
@@ -87,9 +91,9 @@ const QuestionForm: React.FC = (props) => {
           return res;
         })
         .catch((error) => {
-          console.log(error);
-          setErrorMessage(error.response.data);
           setIsLoading(false);
+          console.log(error);
+          setErrorMessage("Something went wrong");
         });
     };
     if (!isLoading) {
@@ -192,11 +196,43 @@ const QuestionForm: React.FC = (props) => {
           </div>
         </form>
       )}
-      {isLoading && (
-        <Modal open={open} onClose={handleClose}>
-          <h3>Loading</h3>
-        </Modal>
-      )}
+      <BasicModal open={modalOpen} setOpen={setModalOpen}>
+        <div>
+          {isLoading && <h3>Loading</h3>}
+          {!isLoading && isSubmitSuccessful && (
+            <div
+              style={{
+                padding: "0",
+                margin: "0",
+                display: "flex",
+                justifyContent: "center",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              <h3>Successfully Posted!</h3>
+              <Button>
+                <Link
+                  style={{ textDecoration: "none", color: "white" }}
+                  href="/"
+                >
+                  go to main
+                </Link>
+              </Button>
+            </div>
+          )}
+          {errorMessage && (
+            <div
+              style={{
+                padding: "0",
+                margin: "0",
+              }}
+            >
+              <h3>{errorMessage}</h3>
+            </div>
+          )}
+        </div>
+      </BasicModal>
     </div>
   );
 };
