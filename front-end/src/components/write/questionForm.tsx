@@ -50,6 +50,9 @@ const QuestionForm: React.FC = (props) => {
   } = useForm<FormValue>();
 
   const onSubmitHandler: SubmitHandler<FormValue> = (data: FormValue) => {
+    if (!selected) {
+      return;
+    }
     // data.preventDefault();
     setIsLoading(true);
     const fetchData = async (data: FormValue) => {
@@ -119,7 +122,6 @@ const QuestionForm: React.FC = (props) => {
                   </div>
                 );
             })}
-            <Input type="hidden" value={selected} {...register("categories")} />
           </div>
           <FormControl margin="normal" sx={{ m: 1, width: 0.9 }}>
             <TextField
