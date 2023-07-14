@@ -2,22 +2,13 @@ package com.peer.missionpeerflow.entity;
 
 import com.peer.missionpeerflow.util.Category;
 import com.peer.missionpeerflow.util.CategoryAttributeConverter;
-
-import java.util.ArrayList;
-import java.util.List;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Convert;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 @Getter
 @NoArgsConstructor
 @Table(name = "question")
@@ -48,8 +39,7 @@ public class Question extends BaseEntity {
 	private List<QuestionComment> questionCommentList = new ArrayList<>();
 
 	@Builder
-	public Question(Long questionId, String title, Category category, String nickname, String password, String content,List<Answer> answerList, List<QuestionComment> questionCommentList, Long view) {
-		this.questionId = questionId;
+	public Question(String title, Category category, String nickname, String password, String content,List<Answer> answerList, List<QuestionComment> questionCommentList, Long view) {
 		this.title = title;
 		this.category = category;
 		this.nickname = nickname;

@@ -3,7 +3,10 @@ package com.peer.missionpeerflow.dto.response;
 import com.peer.missionpeerflow.entity.Answer;
 import com.peer.missionpeerflow.entity.Question;
 import com.peer.missionpeerflow.util.Category;
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -67,6 +70,7 @@ public class QuestionDetailResponse {
          Collections.sort(answerResponseList, answerComparator);
         return answerResponseList;
     }
+
     public static QuestionDetailResponse fromQuestion(Question question){
         return QuestionDetailResponse.builder()
                 .type("question")
