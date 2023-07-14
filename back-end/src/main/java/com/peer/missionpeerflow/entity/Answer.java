@@ -2,24 +2,13 @@ package com.peer.missionpeerflow.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
-
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @NoArgsConstructor
@@ -48,7 +37,7 @@ public class Answer extends BaseEntity {
 
 
 	@Builder
-	public Answer(Question question, Long recommend, boolean isAdopted, String content, String password, String nickname, List<AnswerComment> answerCommentList, LocalDateTime createdAt){
+	public Answer(Question question, Long recommend, boolean isAdopted, String content, String password, String nickname, List<AnswerComment> answerCommentList){
 		this.question = question;
 		this.recommend = recommend;
 		this.isAdopted = isAdopted;
@@ -56,13 +45,11 @@ public class Answer extends BaseEntity {
 		this.password = password;
 		this.nickname = nickname;
 		this.answerCommentList = answerCommentList;
-		this.createdAt = createdAt;
 	}
 
-	public void update(String content, String nickname, LocalDateTime updatedAt){
+	public void update(String content, String nickname){
 		this.content = content;
 		this.nickname = nickname;
-		this.updatedAt = updatedAt;
 	}
 
 	public void updateRecommend(Long recommend){

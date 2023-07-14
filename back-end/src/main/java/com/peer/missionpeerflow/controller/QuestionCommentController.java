@@ -1,16 +1,18 @@
 package com.peer.missionpeerflow.controller;
 
 import com.peer.missionpeerflow.dto.request.comment.QuestionCommentDeleteRequest;
-import com.peer.missionpeerflow.dto.request.comment.QuestionCommentModifyRequest;
 import com.peer.missionpeerflow.dto.request.comment.QuestionCommentRequest;
 import com.peer.missionpeerflow.dto.response.QuestionCommentResponse;
 import com.peer.missionpeerflow.exception.UnauthorizedException;
 import com.peer.missionpeerflow.service.QuestionCommentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Map;
 
 @RequiredArgsConstructor
 @RequestMapping("/v1/question/comment")
@@ -20,10 +22,10 @@ public class QuestionCommentController {
     private final QuestionCommentService questionCommentService;
 
     @PostMapping("")
-    public String create(@Valid @RequestBody QuestionCommentRequest questionCommentRequest)
+    public Map<String, String> create(@Valid @RequestBody QuestionCommentRequest questionCommentRequest)
     {
         questionCommentService.create(questionCommentRequest);
-        return "ok";
+        return CreateIdJson.createIdJson(Long.toString(questionCommentRequest.getQuestionId()));
     }
 
     @GetMapping("")
@@ -33,19 +35,19 @@ public class QuestionCommentController {
     }
 
     @PutMapping("/{commentId}")
-    public String modify(@Valid @RequestBody QuestionCommentModifyRequest questionCommentModifyRequest, @PathVariable("commentId") Long commentId)
+    public Map<String, String>  modify(@Valid @RequestBody QuestionCommentRequest questionCommentRequest, @PathVariable("commentId") Long commentId)
     {
-        if (questionCommentModifyRequest.getPassword().equals(questionCommentService.getComment(commentId).getPassword())) {
-            questionCommentService.modify(commentId, questionCommentModifyRequest);
+        if (questionCommentRequest.getPassword().equals(questionCommentService.getComment(commentId).getPassword())) {
+            questionCommentService.modify(commentId, questionCommentRequest);
         }
         else {
             throw new UnauthorizedException("비밀번호가 일치하지 않습니다.");
         }
-        return "ok";
+        return CreateIdJson.createIdJson(Long.toString(questionCommentRequest.getQuestionId()));
     }
 
     @PostMapping("/{commentId}")
-    public String delete(@Valid @RequestBody QuestionCommentDeleteRequest questionCommentDeleteRequest, @PathVariable("commentId") Long commentId)
+    public ResponseEntity delete(@Valid @RequestBody QuestionCommentDeleteRequest questionCommentDeleteRequest, @PathVariable("commentId") Long commentId)
     {
         if (questionCommentDeleteRequest.getPassword().equals(questionCommentService.getComment(commentId).getPassword())) {
             questionCommentService.delete(commentId);
@@ -53,6 +55,6 @@ public class QuestionCommentController {
         else {
             throw new UnauthorizedException("비밀번호가 일치하지 않습니다.");
         }
-        return "ok";
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
     }
 }
