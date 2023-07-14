@@ -1,14 +1,12 @@
 package com.peer.missionpeerflow.dto.request.question;
 
 import com.peer.missionpeerflow.util.Category;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.AccessLevel;
-import lombok.Builder;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.time.LocalDateTime;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -24,14 +22,4 @@ public class QuestionRequest {
     private Category category;
     @NotBlank(message = "내용을 입력해주세요.")
     private String content;
-
-    @Builder
-    public QuestionRequest(String title, String nickname, String password, String category, String content)
-    {
-        this.title = title;
-        this.nickname = nickname;
-        this.password = password;
-        this.category = Category.ofType(category);
-        this.content = content;
-    }
 }

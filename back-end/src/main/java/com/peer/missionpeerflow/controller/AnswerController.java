@@ -1,19 +1,15 @@
 package com.peer.missionpeerflow.controller;
 
 import com.peer.missionpeerflow.dto.request.answer.AnswerDeleteRequest;
-import com.peer.missionpeerflow.dto.request.answer.AnswerModifyRequest;
 import com.peer.missionpeerflow.dto.request.answer.AnswerRequest;
-import com.peer.missionpeerflow.dto.response.QuestionDetailResponse;
 import com.peer.missionpeerflow.exception.UnauthorizedException;
 import com.peer.missionpeerflow.service.AnswerService;
-import com.peer.missionpeerflow.service.QuestionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.HashMap;
 import java.util.Map;
 
 @RestController
@@ -22,7 +18,6 @@ import java.util.Map;
 public class AnswerController {
 
     private final AnswerService answerService;
-    private final QuestionService questionService;
 
     @PostMapping("")
     public Map<String, String> create(@Valid @RequestBody AnswerRequest answerRequest)
@@ -32,10 +27,10 @@ public class AnswerController {
     }
 
     @PutMapping("/{id}")
-    public Map<String, String> modify(@PathVariable("id") Long answerId, @RequestBody @Valid AnswerModifyRequest answerModifyRequest)
+    public Map<String, String> modify(@PathVariable("id") Long answerId, @RequestBody @Valid AnswerRequest answerRequest)
     {
-        if (answerModifyRequest.getPassword().equals(answerService.getAnswer(answerId).getPassword())) {
-            answerService.modify(answerId, answerModifyRequest);
+        if (answerRequest.getPassword().equals(answerService.getAnswer(answerId).getPassword())) {
+            answerService.modify(answerId, answerRequest);
         } else {
             throw new UnauthorizedException("비밀번호가 일치하지 않습니다.");
         }
@@ -59,12 +54,12 @@ public class AnswerController {
     }
 
     @PostMapping("/{answerId}/adopt")
-    public String updateAdopted(@RequestBody @Valid AnswerDeleteRequest answerDeleteRequest, @PathVariable("answerId") Long answerId) {
+    public Map<String, String> updateAdopted(@RequestBody @Valid AnswerDeleteRequest answerDeleteRequest, @PathVariable("answerId") Long answerId) {
         if (answerDeleteRequest.getPassword().equals(answerService.getAnswer(answerId).getPassword())) {
             answerService.updateAdopted(answerId);
         } else {
             throw new UnauthorizedException("비밀번호가 일치하지 않습니다.");
         }
-        return "ok";
+        return CreateIdJson.createIdJson(Long.toString(answerService.getAnswer(answerId).getQuestion().getQuestionId()));
     }
 }
