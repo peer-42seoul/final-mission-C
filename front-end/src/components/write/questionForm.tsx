@@ -2,11 +2,11 @@ import {
   FormControl,
   Input,
   InputAdornment,
-  InputLabel,
+  Modal,
   TextField,
 } from "@mui/material";
 import CategoryItem from "../category/categoryItem";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Categories } from "@/types/categories";
 import Styles from "./questionForm.module.css";
 import { styled } from "styled-components";
@@ -29,7 +29,6 @@ const Button = styled.button`
 
 type FormValue = {
   questionTitle: string;
-  categories: string;
   questionBody: string;
   nickname: string;
   password: string;
@@ -40,17 +39,26 @@ const QuestionForm: React.FC = (props) => {
   const [selected, setSelected] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState({} as ErrorType);
-  const initialValues = {};
+  const [touched, setTouched] = useState(false);
+  const [buttonError, setButtonError] = useState(false);
+  const initialValues: FormValue = {} as FormValue;
+  initialValues.questionTitle = "";
+  initialValues.questionBody = "";
+  initialValues.nickname = "";
+  initialValues.password = "";
 
   const {
     register,
     handleSubmit,
+    resetField,
     watch,
-    formState: { errors, isSubmitting },
-  } = useForm<FormValue>();
+    formState: { errors, isSubmitting, isSubmitSuccessful },
+  } = useForm<FormValue>({ defaultValues: initialValues });
 
   const onSubmitHandler: SubmitHandler<FormValue> = (data: FormValue) => {
+    setTouched(true);
     if (!selected) {
+      setButtonError(true);
       return;
     }
     // data.preventDefault();
@@ -63,7 +71,6 @@ const QuestionForm: React.FC = (props) => {
         password: data.password,
         category: selected,
         content: data.questionBody,
-        createdAt: new Date().toISOString(),
       };
       console.log(questionData);
       const res = await axios
@@ -71,6 +78,12 @@ const QuestionForm: React.FC = (props) => {
         .then((res) => {
           console.log(res);
           setIsLoading(false);
+          resetField("questionTitle");
+          resetField("questionBody");
+          resetField("nickname");
+          resetField("password");
+          setSelected("");
+          setTouched(false);
           return res;
         })
         .catch((error) => {
@@ -108,6 +121,11 @@ const QuestionForm: React.FC = (props) => {
               })}
             />
           </FormControl>
+          {touched && !selected && (
+            <p style={{ color: "red", margin: "0", padding: "0" }}>
+              need to select category
+            </p>
+          )}
           <div className={Styles.categoryList}>
             {categories.map((category) => {
               if (category !== "")
@@ -123,6 +141,7 @@ const QuestionForm: React.FC = (props) => {
                 );
             })}
           </div>
+
           <FormControl margin="normal" sx={{ m: 1, width: 0.9 }}>
             <TextField
               required
@@ -173,7 +192,11 @@ const QuestionForm: React.FC = (props) => {
           </div>
         </form>
       )}
-      {isLoading && <h2>Loading</h2>}
+      {isLoading && (
+        <Modal open={open} onClose={handleClose}>
+          <h3>Loading</h3>
+        </Modal>
+      )}
     </div>
   );
 };
