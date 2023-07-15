@@ -2,6 +2,7 @@
 import Styles from "./page.module.css";
 import { useState } from "react";
 import QuestionDetail from "@/components/detail/questionDetail/questionDetail";
+import AnswerDetail from "@/components/detail/questionAnswerDetail/answerDetail";
 
 const Page: React.FC<{ params: { id: string } }> = (props) => {
   const [hasError, setHasError] = useState(false);
@@ -57,6 +58,21 @@ const Page: React.FC<{ params: { id: string } }> = (props) => {
           isLoading={isLoading}
           hasError={hasError}
         />
+        {content.answerList.map((aContent) => {
+          return (
+            <AnswerDetail
+              key={aContent.answerId}
+              nickname={aContent.nickname}
+              content={aContent.content}
+              recommend={aContent.recommend}
+              createdAt={aContent.createdAt}
+              updatedAt={aContent.updatedAt}
+              isLoading={isLoading}
+              hasError={hasError}
+              id={aContent.answerId}
+            />
+          );
+        })}
       </div>
       <div className={Styles.sideMenu}></div>
     </div>

@@ -20,11 +20,7 @@ const QuestionDetail: React.FC<{
   return (
     <div className={Styles.mainContent}>
       <div className={Styles.mainTitle}>
-        {!props.hasError && props.isLoading && (
-          // <div style={{ padding: "10px 20px 0" }}>
-          <h2>Loading</h2>
-          // </div>
-        )}
+        {!props.hasError && props.isLoading && <h2>Loading</h2>}
         {!props.hasError && !props.isLoading && (
           <QuestionInfoDetailTop
             title={props.title}
