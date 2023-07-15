@@ -4,6 +4,7 @@ import Styles from "./page.module.css";
 import { useState } from "react";
 import QuestionItems from "@/components/question/questionItems";
 import SearchBox from "@/components/search/searchBox";
+import QuestionInfoDetailTop from "@/components/detail/questionInfoDetail";
 
 const Page: React.FC<{ params: { id: string } }> = (props) => {
   const [selected, setSelected] = useState("");
@@ -50,7 +51,19 @@ const Page: React.FC<{ params: { id: string } }> = (props) => {
       <div className={Styles.mainThread}>
         <div className={Styles.mainContent}>
           <div className={Styles.mainTitle}>
-            <h2>Main Page</h2>
+            {!hasError && isLoading && (
+              // <div style={{ padding: "10px 20px 0" }}>
+              <h2>Loading</h2>
+              // </div>
+            )}
+            {!hasError && !isLoading && (
+              <QuestionInfoDetailTop
+                title={content.title}
+                nickname={content.nickname}
+                createdAt={content.createdAt}
+                updatedAt={content.updatedAt}
+              />
+            )}
           </div>
           {!hasError && isLoading && (
             <div style={{ padding: "10px 20px 0" }}>
