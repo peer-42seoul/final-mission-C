@@ -4,7 +4,8 @@ import Styles from "./page.module.css";
 import { useState } from "react";
 import QuestionItems from "@/components/question/questionItems";
 import SearchBox from "@/components/search/searchBox";
-import QuestionInfoDetailTop from "@/components/detail/questionInfoDetail";
+import QuestionInfoDetailTop from "@/components/detail/questionInfoDetailTop";
+import QuestionContentDetail from "@/components/detail/questionContentDetail";
 
 const Page: React.FC<{ params: { id: string } }> = (props) => {
   const [selected, setSelected] = useState("");
@@ -78,7 +79,9 @@ const Page: React.FC<{ params: { id: string } }> = (props) => {
               </h2>
             </div>
           )}
-          {!hasError && !isLoading}
+          {!hasError && !isLoading && (
+            <QuestionContentDetail content={content.content} />
+          )}
         </div>
       </div>
       <div className={Styles.sideMenu}></div>
