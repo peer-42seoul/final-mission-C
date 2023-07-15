@@ -6,6 +6,7 @@ import QuestionItems from "@/components/question/questionItems";
 import SearchBox from "@/components/search/searchBox";
 import QuestionInfoDetailTop from "@/components/detail/questionInfoDetailTop";
 import QuestionContentDetail from "@/components/detail/questionContentDetail";
+import QuestionInfoDetailBottom from "@/components/detail/questionInfoDetailBottom";
 
 const Page: React.FC<{ params: { id: string } }> = (props) => {
   const [selected, setSelected] = useState("");
@@ -80,7 +81,14 @@ const Page: React.FC<{ params: { id: string } }> = (props) => {
             </div>
           )}
           {!hasError && !isLoading && (
-            <QuestionContentDetail content={content.content} />
+            <div className={Styles.mainContentBody}>
+              <QuestionContentDetail content={content.content} />
+              <QuestionInfoDetailBottom
+                category={content.category}
+                view={content.view}
+                recommend={content.recommend}
+              />
+            </div>
           )}
         </div>
       </div>

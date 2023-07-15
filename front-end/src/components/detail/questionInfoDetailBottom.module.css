@@ -15,6 +15,7 @@
 .questionInfo img {
   height: 1em;
   padding: 0;
+  margin: 0 2px;
   margin-left: 5px;
 }
 
@@ -40,12 +41,13 @@
   display: flex;
   justify-content: flex-end;
   flex-direction: row;
-  align-items: baseline;
+  align-items: center;
   flex-grow: 1;
 }
 
 .questionInfo .meta p {
   font-size: 0.75em;
+  padding: 0 5px;
   color: grey;
 }
 
