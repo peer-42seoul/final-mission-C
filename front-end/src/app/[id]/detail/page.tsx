@@ -3,6 +3,19 @@ import Styles from "./page.module.css";
 import { useState } from "react";
 import QuestionDetail from "@/components/detail/questionDetail/questionDetail";
 import AnswerDetail from "@/components/detail/questionAnswerDetail/answerDetail";
+import AnswerForm from "@/components/detail/answerForm/answerForm";
+import { styled } from "styled-components";
+import Link from "next/link";
+
+const Button = styled.button`
+  display: block;
+  background-color: #a6d5ff;
+  padding: 0.5em 0.5em;
+  border-radius: 10px;
+  color: white;
+  border-color: lightgrey;
+  border-width: 1.5px;
+`;
 
 const Page: React.FC<{ params: { id: string } }> = (props) => {
   const [hasError, setHasError] = useState(false);
@@ -44,7 +57,7 @@ const Page: React.FC<{ params: { id: string } }> = (props) => {
 
   return (
     <div className={Styles.main}>
-      <div className={Styles.sideMenu}></div>
+      <div></div>
       <div className={Styles.mainThread}>
         <QuestionDetail
           category={content.category}
@@ -73,8 +86,25 @@ const Page: React.FC<{ params: { id: string } }> = (props) => {
             />
           );
         })}
+        <AnswerForm questionId={parseInt(props.params.id)} />
       </div>
-      <div className={Styles.sideMenu}></div>
+      <div className={Styles.sideMenu}>
+        <h3>Side Menu</h3>
+        <h4>Wasn't a question you're curious about?</h4>
+        <Button>
+          <Link
+            href={"/write"}
+            style={{ textDecoration: "none", color: "inherit" }}
+          >
+            Write a Question
+          </Link>
+        </Button>
+        <Button>
+          <Link href={"/"} style={{ textDecoration: "none", color: "inherit" }}>
+            Go to Main
+          </Link>
+        </Button>
+      </div>
     </div>
   );
 };

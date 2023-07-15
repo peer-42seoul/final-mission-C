@@ -26,11 +26,16 @@
 
 .sideMenu {
   margin : 0 10px;
-  padding: 10px 20px 10px;
+  padding: 10px 25px 30px;
   border-radius: 25px;
   background-color: white;
   display: inline-block;
   height: fit-content;
   position: sticky;
   top: 10vh;
+}
+
+.sideMenu button {
+  margin: 10px 0 0;
+  padding: 10px;
 }
