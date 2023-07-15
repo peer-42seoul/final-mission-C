@@ -1,4 +1,4 @@
-import Button from "../common/button-right-bottom-border";
+import Button from "../../common/button-right-bottom-border";
 import Styles from "./questionInfoDetailBottom.module.css";
 
 const QuestionInfoDetailBottom: React.FC<{

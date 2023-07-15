@@ -1,7 +1,7 @@
 "use client";
 import Styles from "./page.module.css";
 import { useState } from "react";
-import QuestionDetail from "@/components/detail/questionDetail";
+import QuestionDetail from "@/components/detail/questionDetail/questionDetail";
 
 const Page: React.FC<{ params: { id: string } }> = (props) => {
   const [hasError, setHasError] = useState(false);
