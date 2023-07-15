@@ -11,30 +11,7 @@
   /* margin-left: 10px; */
 }
 
-.mainTitle {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px 20px 0;
-}
 
-.mainContent {
-  background-color: white;
-  border-radius: 20px;
-  /* margin: 0 0 0 10px; */
-  /* width: 50vw; */
-  padding: 20px;
-}
-
-.mainTitle h2 {
-  padding: 0;
-  margin: 0;
-}
-
-.mainContentBody {
-  margin: 0 20px;
-}
 
 .pagination {
   /* padding: 5vh 0; */

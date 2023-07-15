@@ -1,15 +1,9 @@
 "use client";
-import CategoryItemList from "@/components/category/categoryItemList";
 import Styles from "./page.module.css";
 import { useState } from "react";
-import QuestionItems from "@/components/question/questionItems";
-import SearchBox from "@/components/search/searchBox";
-import QuestionInfoDetailTop from "@/components/detail/questionInfoDetailTop";
-import QuestionContentDetail from "@/components/detail/questionContentDetail";
-import QuestionInfoDetailBottom from "@/components/detail/questionInfoDetailBottom";
+import QuestionDetail from "@/components/detail/questionDetail";
 
 const Page: React.FC<{ params: { id: string } }> = (props) => {
-  const [selected, setSelected] = useState("");
   const [hasError, setHasError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -51,46 +45,18 @@ const Page: React.FC<{ params: { id: string } }> = (props) => {
     <div className={Styles.main}>
       <div className={Styles.sideMenu}></div>
       <div className={Styles.mainThread}>
-        <div className={Styles.mainContent}>
-          <div className={Styles.mainTitle}>
-            {!hasError && isLoading && (
-              // <div style={{ padding: "10px 20px 0" }}>
-              <h2>Loading</h2>
-              // </div>
-            )}
-            {!hasError && !isLoading && (
-              <QuestionInfoDetailTop
-                title={content.title}
-                nickname={content.nickname}
-                createdAt={content.createdAt}
-                updatedAt={content.updatedAt}
-              />
-            )}
-          </div>
-          {!hasError && isLoading && (
-            <div style={{ padding: "10px 20px 0" }}>
-              <h2>Loading</h2>
-            </div>
-          )}
-          {hasError && !isLoading && (
-            <div style={{ padding: "10px 20px 0" }}>
-              <h2>
-                {/* {contents?.response?.status}{" "} */}
-                {/* {contents?.response?.data?.error?.message} */}
-              </h2>
-            </div>
-          )}
-          {!hasError && !isLoading && (
-            <div className={Styles.mainContentBody}>
-              <QuestionContentDetail content={content.content} />
-              <QuestionInfoDetailBottom
-                category={content.category}
-                view={content.view}
-                recommend={content.recommend}
-              />
-            </div>
-          )}
-        </div>
+        <QuestionDetail
+          category={content.category}
+          nickname={content.nickname}
+          title={content.title}
+          content={content.content}
+          recommend={content.recommend}
+          view={content.view}
+          createdAt={content.createdAt}
+          updatedAt={content.updatedAt}
+          isLoading={isLoading}
+          hasError={hasError}
+        />
       </div>
       <div className={Styles.sideMenu}></div>
     </div>
