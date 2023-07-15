@@ -1,6 +1,5 @@
 "use client";
-import { log } from "console";
-import ImgButton from "../common/imgButton";
+import Styles from "./questionInfoDetail.module.css";
 
 const QuestionInfoDetailTop: React.FC<{
   title: string;
@@ -18,12 +17,12 @@ const QuestionInfoDetailTop: React.FC<{
     console.log("clicked!");
   };
   return (
-    <div>
-      <div>
+    <div className={Styles.questionInfo}>
+      <div className={Styles.meta}>
         <h2>Q. {props.title}</h2>
         <i>written by. {props.nickname}</i>
       </div>
-      <div>
+      <div className={Styles.meta}>
         <p>{dateInfo}</p>
         <img src={"/pen.png"} onClick={onClick} style={{ height: "1em" }} />
         <img

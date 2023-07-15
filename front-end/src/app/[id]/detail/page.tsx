@@ -47,7 +47,7 @@ const Page: React.FC<{ params: { id: string } }> = (props) => {
 
   return (
     <div className={Styles.main}>
-      <div className={Styles.sideMenu}></div>
+      {/* <div className={Styles.sideMenu}></div> */}
       <div className={Styles.mainThread}>
         <div className={Styles.mainContent}>
           <div className={Styles.mainTitle}>
