@@ -49,4 +49,6 @@
   background-color: white;
   display: inline-block;
   height: fit-content;
+  position: sticky;
+  top: 10vh;
 }

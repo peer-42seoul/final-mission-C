@@ -18,7 +18,7 @@ const QuestionInfoDetailTop: React.FC<{
   };
   return (
     <div className={Styles.questionInfo}>
-      <div className={Styles.meta}>
+      <div className={Styles.questionTitle}>
         <h2>Q. {props.title}</h2>
         <i>written by. {props.nickname}</i>
       </div>

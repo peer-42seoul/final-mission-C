@@ -1,6 +1,6 @@
 .main {
   display: grid;
-  grid-template-columns: 3fr 1fr;
+  grid-template-columns: 1fr 2fr 1fr;
 }
 
 .mainTread {
@@ -22,7 +22,7 @@
 .mainContent {
   background-color: white;
   border-radius: 20px;
-  margin: 0 0 0 10px;
+  /* margin: 0 0 0 10px; */
   /* width: 50vw; */
   padding: 20px;
 }
@@ -50,4 +50,6 @@
   background-color: white;
   display: inline-block;
   height: fit-content;
+  position: sticky;
+  top: 10vh;
 }
