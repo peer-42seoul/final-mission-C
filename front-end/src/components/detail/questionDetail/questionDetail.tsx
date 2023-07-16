@@ -16,6 +16,7 @@ const QuestionDetail: React.FC<{
   isLoading: boolean;
   status?: number;
   errorMessage?: string;
+  id: number;
 }> = (props) => {
   return (
     <div className={Styles.mainContent}>
@@ -49,6 +50,7 @@ const QuestionDetail: React.FC<{
             category={props.category}
             view={props.view}
             recommend={props.recommend}
+            id={props.id}
           />
         </div>
       )}

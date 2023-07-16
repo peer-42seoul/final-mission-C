@@ -90,6 +90,7 @@ const Page: React.FC<{ params: { id: string } }> = (props) => {
           updatedAt={content.updatedAt}
           isLoading={isLoading}
           hasError={hasError}
+          id={parseInt(props.params.id)}
         />
         {content.answerList.map((aContent) => {
           return (
