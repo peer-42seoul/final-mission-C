@@ -1,6 +1,6 @@
 "use client";
 import Styles from "./page.module.css";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import QuestionDetail from "@/components/detail/questionDetail/questionDetail";
 import AnswerDetail from "@/components/detail/questionAnswerDetail/answerDetail";
 import AnswerForm from "@/components/detail/answerForm/answerForm";
@@ -48,16 +48,19 @@ const Page: React.FC<{ params: { id: string } }> = (props) => {
   const [isLoading, setIsLoading] = useState(true);
   const [content, setContent] = useState({} as Question);
   const [errorMessage, setErrorMessage] = useState("" as string);
+  const [reload, setReload] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       axios
         .get(`http://localhost:8000/v1/question/${props.params.id}`)
         .then((res) => {
+          setReload(false);
           setContent(res.data);
           setIsLoading(false);
         })
         .catch((error) => {
+          setReload(false);
           if (error?.response?.data?.error?.message) {
             setErrorMessage(error?.response?.data?.error?.message);
           }
@@ -65,8 +68,10 @@ const Page: React.FC<{ params: { id: string } }> = (props) => {
           setIsLoading(false);
         });
     };
-    fetchData();
-  }, []);
+    if (reload) {
+      fetchData();
+    }
+  }, [reload]);
 
   return (
     <div className={Styles.main}>
