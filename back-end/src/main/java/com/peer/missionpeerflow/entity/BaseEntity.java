@@ -7,10 +7,10 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
+import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.EntityListeners;
 import javax.persistence.MappedSuperclass;
-import java.time.LocalDateTime;
 
 @Data
 @MappedSuperclass
@@ -20,7 +20,7 @@ public abstract class BaseEntity {
 	@Column(nullable = false, columnDefinition = "VARCHAR(10)")
 	protected String nickname;
 
-	@Column(nullable = false, columnDefinition = "VARCHAR(10)")
+	@Column(nullable = false)
 	@JsonIgnore
 	protected String password;
 
@@ -31,6 +31,5 @@ public abstract class BaseEntity {
 	@Column(nullable = false, updatable = false)
 	protected LocalDateTime createdAt;
 
-	@LastModifiedDate
 	protected LocalDateTime updatedAt;
 }

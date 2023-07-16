@@ -1,11 +1,19 @@
 package com.peer.missionpeerflow.entity;
 
 import com.sun.istack.NotNull;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Getter
 @NoArgsConstructor
@@ -35,5 +43,6 @@ public class QuestionComment extends BaseEntity {
 	{
 		this.nickname = nickname;
 		this.content = content;
+		this.updatedAt = LocalDateTime.now();
 	}
 }
