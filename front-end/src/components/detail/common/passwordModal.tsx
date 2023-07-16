@@ -13,6 +13,7 @@ const PasswordModal: React.FC<{
     register,
     handleSubmit,
     formState: { errors },
+    resetField,
   } = useForm<{ password: string }>();
   return (
     <BasicModal
@@ -20,7 +21,13 @@ const PasswordModal: React.FC<{
       setOpen={props.setModalOpen}
       title={"password?"}
     >
-      <form onSubmit={handleSubmit((data) => props.setPassword(data.password))}>
+      <form
+        onSubmit={handleSubmit((data) => {
+          props.setPassword(data.password);
+          props.setModalOpen(false);
+          resetField("password");
+        })}
+      >
         <TextField
           type="password"
           size="small"

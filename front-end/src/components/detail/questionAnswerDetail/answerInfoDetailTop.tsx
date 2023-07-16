@@ -7,18 +7,15 @@ import LoadingBackdrop from "@/components/common/loadingBackdrop";
 
 const AnswerInfoDetailTop: React.FC<{
   createdAt: string;
-  updatedAt: string;
+  updatedAt: string | null;
   nickname: string;
   id: number;
 }> = (props) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [password, setPassword] = useState("" as string);
-  const createdAt = new Date(props.createdAt);
-  const updatedAt = new Date(props.updatedAt);
-  const dateInfo: string =
-    createdAt === updatedAt
-      ? "created at " + createdAt.toLocaleDateString("en-Us")
-      : "updated at " + updatedAt.toLocaleDateString("en-Us");
+  const dateInfo: string = !props?.updatedAt
+    ? "created at " + new Date(props.createdAt).toLocaleDateString("en-Us")
+    : "updated at " + new Date(props?.updatedAt).toLocaleDateString("en-Us");
   const onClick = () => {
     setModalOpen(true);
   };
@@ -62,6 +59,7 @@ const AnswerInfoDetailTop: React.FC<{
         isLoading={trashCan.isLoading}
         hasError={trashCan.hasError}
         setHasError={trashCan.setHasError}
+        errorMessage={trashCan.errorMessage}
       />
     </div>
   );

@@ -22,8 +22,9 @@ const useDeleteAPI = (props: {
         })
         .catch((error) => {
           setHasError(true);
-          if (error?.data?.message) {
-            setErrorMessage(error.data.message);
+          if (error?.response?.data?.error?.message) {
+            console.log(error?.response?.data?.error?.message);
+            setErrorMessage(error.response.data.error.message);
           }
           setIsLoading(false);
           console.log(error);

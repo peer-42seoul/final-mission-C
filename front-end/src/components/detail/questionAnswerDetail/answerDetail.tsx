@@ -8,7 +8,7 @@ const AnswerDetail: React.FC<{
   content: string;
   recommend: number;
   createdAt: string;
-  updatedAt: string;
+  updatedAt: string | null;
   id: number;
   hasError: boolean;
   isLoading: boolean;

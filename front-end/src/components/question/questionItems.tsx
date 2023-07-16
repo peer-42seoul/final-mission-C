@@ -14,7 +14,10 @@ const QuestionItems: React.FC<{
   return (
     <div>
       {props.items?.map((item) => (
-        <div onClick={() => route.push(`/${item.questionId}/detail`)}>
+        <div
+          key={item.questionId}
+          onClick={() => route.push(`/${item.questionId}/detail`)}
+        >
           <QuestionItem
             key={item.questionId}
             item={item}

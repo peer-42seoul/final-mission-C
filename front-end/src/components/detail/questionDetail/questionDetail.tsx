@@ -11,7 +11,7 @@ const QuestionDetail: React.FC<{
   recommend: number;
   view: number;
   createdAt: string;
-  updatedAt: string;
+  updatedAt: string | null;
   hasError: boolean;
   isLoading: boolean;
   status?: number;
@@ -28,6 +28,7 @@ const QuestionDetail: React.FC<{
             nickname={props.nickname}
             createdAt={props.createdAt}
             updatedAt={props.updatedAt}
+            id={props.id}
           />
         )}
       </div>
