@@ -2,6 +2,7 @@ import AnswerContentDetail from "./answerContentDetail";
 import AnswerInfoDetailBottom from "./answerInfoDetailBottom";
 import AnswerInfoDetailTop from "./answerInfoDetailTop";
 import Styles from "./answerDetail.module.css";
+import { Content } from "next/font/google";
 
 const AnswerDetail: React.FC<{
   nickname: string;
@@ -15,7 +16,23 @@ const AnswerDetail: React.FC<{
   status?: number;
   errorMessage?: string;
   setReload: (state: boolean) => void;
+  defaultValue: {
+    content: string;
+    nickname: string;
+    password: string;
+  } | null;
+  setDefaultValue: (data: any) => void;
+  setUpdateAnswerID: (answerID: number) => void;
+  questionID: number;
 }> = (props) => {
+  const onUpdateClickHandler = () => {
+    props.setDefaultValue({
+      nickname: "",
+      content: props.content,
+      password: "",
+    });
+    props.setUpdateAnswerID(props.id);
+  };
   return (
     <div className={Styles.mainContent}>
       {!props.hasError && props.isLoading && (
@@ -38,6 +55,7 @@ const AnswerDetail: React.FC<{
             nickname={props.nickname}
             id={props.id}
             setReload={props.setReload}
+            onUpdate={onUpdateClickHandler}
           />
           <AnswerContentDetail content={props.content} />
           <AnswerInfoDetailBottom

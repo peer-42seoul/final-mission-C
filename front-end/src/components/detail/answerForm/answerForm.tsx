@@ -25,16 +25,20 @@ type FormValues = {
 
 const AnswerForm: React.FC<{
   questionId: number;
-  default?: FormValues;
+  default?: FormValues | null;
   answerID?: number;
   setReload: (state: boolean) => void;
+  setDefaultValue: (data: FormValues | null) => void;
+  setAnswerID: (state: number) => void;
 }> = (props) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
     resetField,
-  } = useForm<FormValues>({ defaultValues: props?.default });
+  } = useForm<FormValues>(
+    props.default ? { defaultValues: props.default } : {}
+  );
   const [isLoading, setIsLoading] = useState(false);
   const [hasError, setHasError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("" as string);
@@ -47,18 +51,28 @@ const AnswerForm: React.FC<{
     setIsLoading(true);
     const postAnswer = async (data: FormValues) => {
       const payLoad = { ...data, questionId: props.questionId };
-      axios
+      console.log(payLoad);
+      await axios
         .post(link, payLoad)
         .then((res) => {
+          if (props?.default) {
+            props.setDefaultValue(null);
+          }
+          return res;
+        })
+        .then((res) => {
+          console.log(res);
           resetField("content");
           resetField("nickname");
           resetField("password");
+          props.setAnswerID(0);
           setIsLoading(false);
         })
         .then(() => {
           props.setReload(true);
         })
         .catch((error) => {
+          console.log(error);
           if (error?.response?.data?.message) {
             setErrorMessage(error?.response?.data?.message);
           }
@@ -84,6 +98,7 @@ const AnswerForm: React.FC<{
               margin: "5px 0",
               padding: "0",
             }}
+            defaultValue={props.default?.content}
             required
             placeholder="ex. Test EVERYTHING"
             {...register("content")}

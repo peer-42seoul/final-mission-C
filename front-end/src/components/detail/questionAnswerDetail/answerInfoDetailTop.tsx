@@ -11,6 +11,7 @@ const AnswerInfoDetailTop: React.FC<{
   nickname: string;
   id: number;
   setReload: (state: boolean) => void;
+  onUpdate: () => void;
 }> = (props) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [password, setPassword] = useState("" as string);
@@ -43,7 +44,11 @@ const AnswerInfoDetailTop: React.FC<{
         </div>
         <div className={Styles.meta}>
           <p>{dateInfo}</p>
-          <img src={"/pen.png"} onClick={onClick} style={{ height: "1em" }} />
+          <img
+            src={"/pen.png"}
+            onClick={props.onUpdate}
+            style={{ height: "1em" }}
+          />
           <img
             src={"/trashCan.png"}
             onClick={onClick}
