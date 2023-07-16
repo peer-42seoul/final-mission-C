@@ -5,12 +5,14 @@ import useRecommend from "@/hooks/useRecommend";
 const AnswerInfoDetailBottom: React.FC<{
   answerId: number;
   recommend: number;
+  setReload: (state: boolean) => void;
 }> = (props) => {
   const { hasError, setHasError, isLoading, recommend, onClickHandler } =
     useRecommend({
       type: "answer",
       recommend: props.recommend,
       id: props.answerId,
+      setReload: props.setReload,
     });
   return (
     <div>

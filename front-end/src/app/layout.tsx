@@ -1,3 +1,4 @@
+import Link from "next/link";
 import "./globals.css";
 import Styles from "./layout.module.css";
 import { Inter } from "next/font/google";
@@ -21,7 +22,14 @@ export default function RootLayout({
         style={{ backgroundColor: "#A6D5FF", margin: "0px" }}
       >
         <header>
-          <h1 className={Styles.mainTitle}>Hello World!</h1>
+          <Link href="/">
+            <h1
+              style={{ color: "black", textDecoration: "none" }}
+              className={Styles.mainTitle}
+            >
+              Hello World!
+            </h1>
+          </Link>
         </header>
         <div style={{ margin: "10vh 0 0 0" }}>{children}</div>
       </body>

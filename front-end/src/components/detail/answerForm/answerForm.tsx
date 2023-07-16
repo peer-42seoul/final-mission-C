@@ -27,6 +27,7 @@ const AnswerForm: React.FC<{
   questionId: number;
   default?: FormValues;
   answerID?: number;
+  setReload: (state: boolean) => void;
 }> = (props) => {
   const {
     register,
@@ -53,6 +54,9 @@ const AnswerForm: React.FC<{
           resetField("nickname");
           resetField("password");
           setIsLoading(false);
+        })
+        .then(() => {
+          props.setReload(true);
         })
         .catch((error) => {
           if (error?.response?.data?.message) {

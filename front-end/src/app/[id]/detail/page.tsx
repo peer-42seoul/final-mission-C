@@ -90,6 +90,7 @@ const Page: React.FC<{ params: { id: string } }> = (props) => {
             isLoading={isLoading}
             hasError={hasError}
             id={parseInt(props.params.id)}
+            setReload={setReload}
           />
         )}
         {!isLoading &&
@@ -106,10 +107,14 @@ const Page: React.FC<{ params: { id: string } }> = (props) => {
                 isLoading={isLoading}
                 hasError={hasError}
                 id={aContent.answerId}
+                setReload={setReload}
               />
             );
           })}
-        <AnswerForm questionId={parseInt(props.params.id)} />
+        <AnswerForm
+          setReload={setReload}
+          questionId={parseInt(props.params.id)}
+        />
       </div>
       <div className={Styles.sideMenu}>
         <h3>Side Menu</h3>

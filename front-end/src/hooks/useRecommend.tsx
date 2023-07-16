@@ -5,6 +5,7 @@ const useRecommend = (props: {
   type: string;
   recommend: number;
   id: number;
+  setReload: (state: boolean) => void;
 }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [recommend, setRecommend] = useState(props.recommend);
