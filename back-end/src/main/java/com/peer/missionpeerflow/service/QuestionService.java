@@ -7,6 +7,7 @@ import com.peer.missionpeerflow.exception.NotFoundException;
 import com.peer.missionpeerflow.repository.QuestionRepository;
 import lombok.RequiredArgsConstructor;
 import org.jetbrains.annotations.NotNull;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,14 +17,14 @@ import org.springframework.transaction.annotation.Transactional;
 public class QuestionService {
 
     private final QuestionRepository questionRepository;
-
+    private final PasswordEncoder passwordEncoder;
     @Transactional
     public Long create(@NotNull QuestionRequest questionRequest) {
         Question entity = Question.builder()
                 .title(questionRequest.getTitle())
                 .content(questionRequest.getContent())
                 .nickname(questionRequest.getNickname())
-                .password(questionRequest.getPassword())
+                .password(passwordEncoder.encode(questionRequest.getPassword()))
                 .category(questionRequest.getCategory())
                 .view(0L)
                 .build();
@@ -35,7 +36,6 @@ public class QuestionService {
     public void modify(@NotNull QuestionRequest questionRequest, Long questionId) {
         Question entity = getQuestion(questionId);
         entity.update(questionRequest.getTitle(), questionRequest.getNickname(), questionRequest.getCategory(), questionRequest.getContent());
-        questionRepository.save(entity);
     }
 
     @Transactional
@@ -53,7 +53,6 @@ public class QuestionService {
     public void updateView(Long questionId) {
         Question entity = getQuestion(questionId);
         entity.updateView(entity.getView() + 1);
-        questionRepository.save(entity);
     }
 
     @Transactional
@@ -65,6 +64,5 @@ public class QuestionService {
     public void updateRecommend(Long questionId) {
         Question entity = getQuestion(questionId);
         entity.updateRecommend(entity.getRecommend() + 1);
-        questionRepository.save(entity);
     }
 }
