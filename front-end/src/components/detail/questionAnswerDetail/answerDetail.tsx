@@ -35,6 +35,7 @@ const AnswerDetail: React.FC<{
             createdAt={props.createdAt}
             updatedAt={props.updatedAt}
             nickname={props.nickname}
+            id={props.id}
           />
           <AnswerContentDetail content={props.content} />
           <AnswerInfoDetailBottom

@@ -5,6 +5,7 @@ const LoadingBackdrop: React.FC<{
   isLoading: boolean;
   hasError: boolean;
   setHasError: (status: boolean) => void;
+  errorMessage?: string;
 }> = (props) => {
   return (
     <div>
@@ -16,7 +17,7 @@ const LoadingBackdrop: React.FC<{
         <CircularProgress color="inherit" />
       </Backdrop>
       <BasicModal
-        title="Something went wrong"
+        title={props.errorMessage ? props.errorMessage : "Something went wrong"}
         open={props.hasError}
         setOpen={props.setHasError}
       />
