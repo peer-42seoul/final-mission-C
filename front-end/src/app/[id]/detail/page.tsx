@@ -23,33 +23,53 @@ const Page: React.FC<{ params: { id: string } }> = (props) => {
 
   const content = {
     type: "question",
-    category: "MINIRT",
-    nickname: "junssong",
-    title: "구웨에에ㅔ에엑",
-    content: "minirt 어떻게 시작해야하나요?",
+    category: "MINISHELL",
+    nickname: "san",
+    title: "미니쉘 우웩",
+    content: "다시 질문 드립니다 minishell은 어떤 과제인가요?",
     recommend: 0,
-    view: 3,
-    createdAt: "2023-07-10T10:35:18.966728",
-    updatedAt: "2023-07-10T10:53:02.456631",
+    view: 5,
+    createdAt: "2023-07-10T20:05:18.950053",
+    updatedAt: "2023-07-16T14:01:43.433011",
     answerList: [
       {
-        nickname: "hyeongki",
-        content: "minishell 이렇게 하시면 됩니다.",
-        createdAt: "2023-07-10T10:54:49.223479",
-        updatedAt: "2023-07-10T10:54:49.223479",
+        nickname: "jun",
+        content: "이건 0번 질문의 1번 답변 입니다. success.",
+        createdAt: "2023-07-16T14:01:31.514359",
+        updatedAt: "2023-07-16T14:01:31.514359",
         recommend: 0,
-        questionId: 11,
-        answerId: 14,
+        questionId: 1,
+        answerId: 1,
         adopted: false,
       },
       {
-        nickname: "hyeongki",
-        content: "minishell 이렇게 안돼요 됩니다.",
-        createdAt: "2023-07-10T10:55:24.288792",
-        updatedAt: "2023-07-10T10:55:24.288792",
+        nickname: "jun",
+        content: "이건 1번 질문의 2번 답변 입니다. success.",
+        createdAt: "2023-07-16T14:02:02.411199",
+        updatedAt: "2023-07-16T14:02:02.411199",
         recommend: 0,
-        questionId: 11,
-        answerId: 15,
+        questionId: 1,
+        answerId: 2,
+        adopted: false,
+      },
+      {
+        nickname: "jun",
+        content: "이건 1번 질문의 2번 답변 입니다. success.",
+        createdAt: "2023-07-16T14:02:03.177738",
+        updatedAt: "2023-07-16T14:02:03.177738",
+        recommend: 0,
+        questionId: 1,
+        answerId: 3,
+        adopted: false,
+      },
+      {
+        nickname: "jun",
+        content: "이건 1번 질문의 2번 답변 입니다. success.",
+        createdAt: "2023-07-16T14:02:04.481063",
+        updatedAt: "2023-07-16T14:02:04.481063",
+        recommend: 0,
+        questionId: 1,
+        answerId: 4,
         adopted: false,
       },
     ],
@@ -70,6 +90,7 @@ const Page: React.FC<{ params: { id: string } }> = (props) => {
           updatedAt={content.updatedAt}
           isLoading={isLoading}
           hasError={hasError}
+          id={parseInt(props.params.id)}
         />
         {content.answerList.map((aContent) => {
           return (

@@ -37,7 +37,10 @@ const AnswerDetail: React.FC<{
             nickname={props.nickname}
           />
           <AnswerContentDetail content={props.content} />
-          <AnswerInfoDetailBottom recommend={props.recommend} />
+          <AnswerInfoDetailBottom
+            answerId={props.id}
+            recommend={props.recommend}
+          />
         </div>
       )}
     </div>
