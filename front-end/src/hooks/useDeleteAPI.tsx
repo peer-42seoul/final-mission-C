@@ -6,6 +6,7 @@ const useDeleteAPI = (props: {
   id: number;
   password: string;
   setReload?: (state: boolean) => void;
+  setRoute?: () => void;
 }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [hasError, setHasError] = useState(false);
@@ -13,12 +14,13 @@ const useDeleteAPI = (props: {
   const deleteItem = () => {
     setIsLoading(true);
     const fetchData = async () => {
-      axios
+      const result = axios
         .post(`http://localhost:8000/v1/${props.type}/${props.id}`, {
           password: props.password,
         })
         .then((res) => {
           console.log(res);
+          setErrorMessage("");
           setIsLoading(false);
           return res;
         })
@@ -27,7 +29,7 @@ const useDeleteAPI = (props: {
             console.log("was here?");
             props.setReload(true);
           }
-          return res;
+          return true;
         })
         .catch((error) => {
           setHasError(true);
@@ -37,9 +39,12 @@ const useDeleteAPI = (props: {
           }
           setIsLoading(false);
           console.log(error);
+          return false;
         });
+      return result;
     };
-    fetchData();
+    const result = fetchData();
+    return result;
   };
   return { hasError, setHasError, isLoading, errorMessage, deleteItem };
 };

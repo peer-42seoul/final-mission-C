@@ -19,10 +19,10 @@ const QuestionInfoDetailTop: React.FC<{
   const dateInfo: string = !props?.updatedAt
     ? "created at " + new Date(props.createdAt).toLocaleDateString("en-Us")
     : "updated at " + new Date(props?.updatedAt).toLocaleDateString("en-Us");
-  const router = useRouter();
   const onClick = () => {
     setModalOpen(true);
   };
+  const route = useRouter();
 
   const trashCan = useDeleteAPI({
     type: "question",
@@ -32,10 +32,15 @@ const QuestionInfoDetailTop: React.FC<{
 
   useEffect(() => {
     if (password) {
-      trashCan.deleteItem();
-      router.push("/");
+      trashCan.deleteItem().then((result) => {
+        console.log(result);
+        if (result === true) {
+          route.push("/");
+        }
+      });
     }
   }, [password]);
+
   return (
     <div>
       <div className={Styles.questionInfo}>

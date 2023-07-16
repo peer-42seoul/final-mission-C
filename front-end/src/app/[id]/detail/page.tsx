@@ -8,6 +8,7 @@ import { styled } from "styled-components";
 import Link from "next/link";
 import axios from "axios";
 import LoadingBackdrop from "@/components/common/loadingBackdrop";
+import { useRouter } from "next/navigation";
 
 const Button = styled.button`
   display: block;
@@ -48,7 +49,13 @@ const Page: React.FC<{ params: { id: string } }> = (props) => {
   const [isLoading, setIsLoading] = useState(true);
   const [content, setContent] = useState({} as Question);
   const [errorMessage, setErrorMessage] = useState("" as string);
+  const [defaultValue, setDefaultValue] = useState<{
+    content: string;
+    nickname: string;
+    password: string;
+  } | null>(null);
   const [reload, setReload] = useState(true);
+  const [updateAnswerID, setUpdateAnswerID] = useState(0);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -58,6 +65,8 @@ const Page: React.FC<{ params: { id: string } }> = (props) => {
           setReload(false);
           setContent(res.data);
           setIsLoading(false);
+          setUpdateAnswerID(0);
+          setDefaultValue(null);
         })
         .catch((error) => {
           setReload(false);
@@ -66,12 +75,17 @@ const Page: React.FC<{ params: { id: string } }> = (props) => {
           }
           setHasError(true);
           setIsLoading(false);
+          setUpdateAnswerID(0);
+          setDefaultValue(null);
         });
     };
     if (reload) {
       fetchData();
     }
+    return () => {};
   }, [reload]);
+
+  const route = useRouter();
 
   return (
     <div className={Styles.main}>
@@ -96,24 +110,34 @@ const Page: React.FC<{ params: { id: string } }> = (props) => {
         {!isLoading &&
           !hasError &&
           content?.answerList?.map((aContent) => {
-            return (
-              <AnswerDetail
-                key={aContent.answerId}
-                nickname={aContent.nickname}
-                content={aContent.content}
-                recommend={aContent.recommend}
-                createdAt={aContent.createdAt}
-                updatedAt={aContent.updatedAt}
-                isLoading={isLoading}
-                hasError={hasError}
-                id={aContent.answerId}
-                setReload={setReload}
-              />
-            );
+            if (aContent.answerId !== updateAnswerID) {
+              return (
+                <AnswerDetail
+                  key={aContent.answerId}
+                  nickname={aContent.nickname}
+                  content={aContent.content}
+                  recommend={aContent.recommend}
+                  createdAt={aContent.createdAt}
+                  updatedAt={aContent.updatedAt}
+                  isLoading={isLoading}
+                  hasError={hasError}
+                  id={aContent.answerId}
+                  setReload={setReload}
+                  defaultValue={defaultValue}
+                  setDefaultValue={setDefaultValue}
+                  questionID={parseInt(props.params.id)}
+                  setUpdateAnswerID={setUpdateAnswerID}
+                />
+              );
+            }
           })}
         <AnswerForm
           setReload={setReload}
           questionId={parseInt(props.params.id)}
+          default={defaultValue}
+          setDefaultValue={setDefaultValue}
+          answerID={updateAnswerID}
+          setAnswerID={setUpdateAnswerID}
         />
       </div>
       <div className={Styles.sideMenu}>
