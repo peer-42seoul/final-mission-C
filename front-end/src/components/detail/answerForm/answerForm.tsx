@@ -3,8 +3,6 @@ import { TextField } from "@mui/material";
 import styled from "@emotion/styled";
 import Styles from "./answerForm.module.css";
 import { useForm } from "react-hook-form";
-import { ErrorMessage } from "@hookform/error-message";
-import { type } from "os";
 
 const Button = styled.button`
   display: block;

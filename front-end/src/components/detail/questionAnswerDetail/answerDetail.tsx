@@ -8,7 +8,7 @@ const AnswerDetail: React.FC<{
   content: string;
   recommend: number;
   createdAt: string;
-  updatedAt: string;
+  updatedAt: string | null;
   id: number;
   hasError: boolean;
   isLoading: boolean;
@@ -35,9 +35,13 @@ const AnswerDetail: React.FC<{
             createdAt={props.createdAt}
             updatedAt={props.updatedAt}
             nickname={props.nickname}
+            id={props.id}
           />
           <AnswerContentDetail content={props.content} />
-          <AnswerInfoDetailBottom recommend={props.recommend} />
+          <AnswerInfoDetailBottom
+            answerId={props.id}
+            recommend={props.recommend}
+          />
         </div>
       )}
     </div>

@@ -11,11 +11,12 @@ const QuestionDetail: React.FC<{
   recommend: number;
   view: number;
   createdAt: string;
-  updatedAt: string;
+  updatedAt: string | null;
   hasError: boolean;
   isLoading: boolean;
   status?: number;
   errorMessage?: string;
+  id: number;
 }> = (props) => {
   return (
     <div className={Styles.mainContent}>
@@ -27,6 +28,7 @@ const QuestionDetail: React.FC<{
             nickname={props.nickname}
             createdAt={props.createdAt}
             updatedAt={props.updatedAt}
+            id={props.id}
           />
         )}
       </div>
@@ -49,6 +51,7 @@ const QuestionDetail: React.FC<{
             category={props.category}
             view={props.view}
             recommend={props.recommend}
+            id={props.id}
           />
         </div>
       )}
