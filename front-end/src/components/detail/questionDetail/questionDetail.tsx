@@ -17,6 +17,7 @@ const QuestionDetail: React.FC<{
   status?: number;
   errorMessage?: string;
   id: number;
+  setReload: (state: boolean) => void;
 }> = (props) => {
   return (
     <div className={Styles.mainContent}>
@@ -29,6 +30,7 @@ const QuestionDetail: React.FC<{
             createdAt={props.createdAt}
             updatedAt={props.updatedAt}
             id={props.id}
+            setReload={props.setReload}
           />
         )}
       </div>
@@ -48,6 +50,7 @@ const QuestionDetail: React.FC<{
         <div className={Styles.mainContentBody}>
           <QuestionContentDetail content={props.content} />
           <QuestionInfoDetailBottom
+            setReload={props.setReload}
             category={props.category}
             view={props.view}
             recommend={props.recommend}

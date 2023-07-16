@@ -8,12 +8,14 @@ const QuestionInfoDetailBottom: React.FC<{
   view: number;
   recommend: number;
   id: number;
+  setReload: (state: boolean) => void;
 }> = (props) => {
   const { hasError, setHasError, isLoading, recommend, onClickHandler } =
     useRecommend({
       type: "question",
       recommend: props.recommend,
       id: props.id,
+      setReload: props.setReload,
     });
   return (
     <div className={Styles.questionInfo}>

@@ -10,6 +10,7 @@ const AnswerInfoDetailTop: React.FC<{
   updatedAt: string | null;
   nickname: string;
   id: number;
+  setReload: (state: boolean) => void;
 }> = (props) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [password, setPassword] = useState("" as string);
@@ -24,6 +25,7 @@ const AnswerInfoDetailTop: React.FC<{
     type: "answer",
     id: props.id,
     password: password,
+    setReload: props.setReload,
   });
 
   useEffect(() => {

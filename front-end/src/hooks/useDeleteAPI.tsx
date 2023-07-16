@@ -5,6 +5,7 @@ const useDeleteAPI = (props: {
   type: string;
   id: number;
   password: string;
+  setReload?: (state: boolean) => void;
 }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [hasError, setHasError] = useState(false);
@@ -17,7 +18,15 @@ const useDeleteAPI = (props: {
           password: props.password,
         })
         .then((res) => {
+          console.log(res);
           setIsLoading(false);
+          return res;
+        })
+        .then((res) => {
+          if (props?.setReload) {
+            console.log("was here?");
+            props.setReload(true);
+          }
           return res;
         })
         .catch((error) => {

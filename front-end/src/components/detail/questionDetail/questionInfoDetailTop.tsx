@@ -12,6 +12,7 @@ const QuestionInfoDetailTop: React.FC<{
   createdAt: string;
   updatedAt: string | null;
   id: number;
+  setReload: (state: boolean) => void;
 }> = (props) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [password, setPassword] = useState("" as string);
