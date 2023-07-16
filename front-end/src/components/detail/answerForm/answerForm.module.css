@@ -1,0 +1,44 @@
+
+.mainContent {
+  background-color: white;
+  border-radius: 20px;
+  margin: 20px 0;
+  padding: 20px 17.5px;
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  height: fit-content;
+  /* align-items: stretch; */
+}
+
+.content {
+  width: 80%;
+  padding: 0 5px;
+}
+
+.content input {
+  width: 100%;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+  padding: 0 5px;
+  justify-content: center;
+  align-content: space-between;
+}
+
+.container input {
+  width: 100px;
+  padding: 5px 0;
+}
+
+.container label{
+  padding: 0;
+  font-size: 13px;
+}
+
+.container input:focus {
+  font-size: 16px;
+}

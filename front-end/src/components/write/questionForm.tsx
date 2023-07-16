@@ -1,3 +1,4 @@
+"use client";
 import {
   Box,
   FormControl,
@@ -116,7 +117,7 @@ const QuestionForm: React.FC = (props) => {
             <Input
               required
               style={{ height: "30px", fontSize: "1.1em" }}
-              placeholder="ex. Is there some tips for minishell?"
+              placeholder="ex. Are there some tips for minishell?"
               startAdornment={
                 <InputAdornment position="start">Q.</InputAdornment>
               }
@@ -187,7 +188,17 @@ const QuestionForm: React.FC = (props) => {
                 size="small"
                 type="password"
                 style={{ margin: "5px 0" }}
-                {...register("password", { required: "Password is required" })}
+                {...register("password", {
+                  required: "Password is required",
+                  minLength: {
+                    value: 4,
+                    message: "The min length of password is 4",
+                  },
+                  pattern: {
+                    value: /^[a-zA-Z0-9]+$/,
+                    message: "You can only use alphabet or number for password",
+                  },
+                })}
               />
             </div>
             <Button type="submit" disabled={isSubmitting}>

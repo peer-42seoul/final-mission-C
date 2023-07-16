@@ -1,11 +1,9 @@
 "use client";
-import Image from "next/image";
 import Styles from "./page.module.css";
-import QuestionItem from "../components/question/questionItem";
 import QuestionItems from "../components/question/questionItems";
 import questionItemElement from "../types/questionItemElement";
 import Pagination from "@mui/material/Pagination";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { SortType } from "../types/sort";
 import SortSelect from "../components/sortSelect";
 import CategoryItemList from "@/components/category/categoryItemList";
